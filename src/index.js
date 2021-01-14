@@ -4,3 +4,4 @@ import './css/base.scss';
 import * as apiCalls from './util.js'
 apiCalls.getSingleUser(5)
 apiCalls.getAllTrips()
+apiCalls.getAllDestinations()

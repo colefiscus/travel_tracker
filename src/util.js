@@ -9,3 +9,9 @@ export function getAllTrips() {
     .then(response => response.json())
     .then(data => console.log(data))
 }
+
+export function getAllDestinations() {
+  fetch("http://localhost:3001/api/v1/destinations")
+    .then(response => response.json())
+    .then(data => console.log(data))
+}
