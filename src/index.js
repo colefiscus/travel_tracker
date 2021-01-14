@@ -1,4 +1,3 @@
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 
 import { User } from './User.js'
@@ -8,6 +7,8 @@ import * as apiCalls from './util.js'
 const singleUser = apiCalls.getSingleUser(5)
 const allTrips = apiCalls.getAllTrips()
 const allDestinations = apiCalls.getAllDestinations()
+
+let user;
 
 Promise.all([singleUser, allTrips, allDestinations])
   .then(orderedData => {
@@ -21,6 +22,6 @@ Promise.all([singleUser, allTrips, allDestinations])
 
 
 const createNewUser = userData => {
-  const newUser = new User(userData);
-  console.log("userrrr", newUser)
+  user = new User(userData);
+  console.log("userrrr", user)
 }
