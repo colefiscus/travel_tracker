@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <title>WanderLove</title>
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
-
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-
+    <header>
+      <h1>WanderLove</h1>
+      <div class="login-corner">
+        <h2>Tommy's Account</h2>
+        <button type="button" class="login-button" name="return-to-login">Return to Login</button>
+      </div>
+    </header>
+    <main>
+      <section class="user-summary">
+        <p>Nice job! This year you've earned 4520 points!</p>
+        <p>Your Rank: Explorer</p>
+        <p>Next Rank: 454 points</p>
+      </section>
+      <section class="navigation">
+        <nav class="trip-selection">
+          <button type="button" name="button">MY TRIPS</button>
+          <button type="button" name="button">CHOOSE NEW TRIP</button>
+        </nav>
+        <nav class="trip-type">
+          <h1>FILTER TRIPS</h1>
+          <button type="button" name="button">ALL</button>
+          <button type="button" name="button">PAST</button>
+          <button type="button" name="button">PRESENT</button>
+          <button type="button" name="button">FUTURE</button>
+          <button type="button" name="button">PENDING</button>
+        </nav>
+      </section>
+      <section class="user-trips">
+        <article class="trip" id="1">
+          <figure></figure>
+          <h2>LIMA</h2>
+          <p>Dates: 1/8/2021 - 1/15/2021</p>
+          <p># of Travelers: 2</p>
+          <p>Total Cost: $5422</p>
+          <p>Status: Approved!</p>
+        </article>
+      </section>
+      <footer>
+        <p>WanderLove</p>
+        <p>Contact Us: 123-456-7890</p>
+        <p>Send Us A Postcard!</p>
+      </footer>
+    </main>
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
 </html>

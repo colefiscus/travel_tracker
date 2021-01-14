@@ -1,7 +1,80 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
-
+html,
 body {
-  background: $primary-background;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+// ------------------------HEADER ------------------------
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 3px solid darkblue;
+}
+
+.login-corner {
+  display: flex;
+}
+
+// ------------------------ USER SUMMARY ------------------------
+
+main {
+  height: 100%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 3px solid red;
+}
+
+.user-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid darkblue;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 3px solid darkblue;
+}
+
+.trip-selection {
+  display: flex;
+  justify-content: space-around;
+  border: 3px solid darkblue;
+}
+
+.trip-type {
+  display: flex;
+  justify-content: space-around;
+  border: 3px solid darkblue;
+}
+
+.user-trips {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid darkblue;
+}
+
+.trip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 3px solid darkblue;
 }
