@@ -1,17 +1,17 @@
 export function getSingleUser(id) {
-  fetch(`http://localhost:3001/api/v1/travelers/${id}`)
-    .then(response => response.json())
-    .then(data => console.log(data))
+  const specificUser = fetch(`http://localhost:3001/api/v1/travelers/${id}`)
+    .then(response => response.json());
+    return specificUser;
 }
 
 export function getAllTrips() {
-  fetch("http://localhost:3001/api/v1/trips")
-    .then(response => response.json())
-    .then(data => console.log(data))
+  const trips = fetch("http://localhost:3001/api/v1/trips")
+    .then(response => response.json());
+    return trips;
 }
 
 export function getAllDestinations() {
-  fetch("http://localhost:3001/api/v1/destinations")
-    .then(response => response.json())
-    .then(data => console.log(data))
+  const destinations = fetch("http://localhost:3001/api/v1/destinations")
+    .then(response => response.json());
+    return destinations;
 }
