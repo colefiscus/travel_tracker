@@ -8,7 +8,7 @@ import * as apiCalls from "./util.js";
 
 import * as domUpdates from "./DOMupdate.js";
 
-const singleUser = apiCalls.getSingleUser(5);
+const singleUser = apiCalls.getSingleUser(21);
 const allTrips = apiCalls.getAllTrips();
 const allDestinations = apiCalls.getAllDestinations();
 
@@ -22,7 +22,9 @@ Promise.all([singleUser, allTrips, allDestinations])
     createNewUser(orderedData[0]);
     domUpdates.changeUserName(orderedData[0]);
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations)
+    console.log(user)
     console.log(trips)
+    console.log(destinations)
   })
   // .catch(error => {
   //   window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.");
@@ -35,24 +37,23 @@ const loadInitialScreen = user => {
 
 const createNewUser = userData => {
   user = new User(userData);
-  // console.log("userrrr", user);
 }
 
 const createMatchingTrips = (user, tripData, destinationData) => {
   const tripsByUser = tripData.filter(trip => trip.userID === user.id);
-  console.log(tripsByUser)
   const destinationsByUserTrips = tripsByUser.map(trip => {
      return destinationData.find(destination => destination.id === trip.destinationID)
   })
   tripsByUser.forEach(trip => createNewTrip(trip))
-
+  destinationsByUserTrips.forEach(destination => createDestination(destination))
 }
 
-const createNewTrip = tripData => {
-  const trip = new Trip(tripData)
+const createNewTrip = filteredTrip => {
+  const trip = new Trip(filteredTrip)
   trips.push(trip)
 }
 
-const createDestination = (trips, desinationData) => {
-
+const createDestination = filteredDestination => {
+  const destination = new Destination(filteredDestination)
+  destinations.push(destination)
 }
