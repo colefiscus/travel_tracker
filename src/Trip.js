@@ -11,10 +11,11 @@ export class Trip {
   }
 
   determineDateRange() {
-    let endDate = new Date(this.date);
+    const startDate = new Date(this.date);
+    const finalStartDate = startDate.toDateString();
+    const endDate = new Date(this.date);
     endDate.setDate(endDate.getDate() + this.duration);
-    let finalEndDate = endDate.toLocaleDateString()
-    console.log({startDate: this.date, endDate: finalEndDate})
-    // return {startDate: startDate, endDate: endDate};
+    const finalEndDate = endDate.toDateString()
+    return {startDate: finalStartDate, endDate: finalEndDate};
   }
 }
