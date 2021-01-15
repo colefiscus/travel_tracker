@@ -22,6 +22,7 @@ export const changeUserSummary = (user, destinations, trips) => {
 
 export const addUserTrips = (destinations, trips) => {
   for (var i = 0; i < trips.length; i++) {
+    trips[i].determineDateRange();
     const price = destinations[i].calculateTripCost(trips[i])
     userTrips.innerHTML += `
     <article class="trip" id="${trips[i].id}">

@@ -8,7 +8,7 @@ import * as apiCalls from "./util.js";
 
 import * as domUpdates from "./DOMupdate.js";
 
-const singleUser = apiCalls.getSingleUser(21);
+const singleUser = apiCalls.getSingleUser(22);
 const allTrips = apiCalls.getAllTrips();
 const allDestinations = apiCalls.getAllDestinations();
 
@@ -20,6 +20,7 @@ Promise.all([singleUser, allTrips, allDestinations])
   .then(orderedData => {
     createNewUser(orderedData[0]);
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations)
+    sortTripsByDate(trips)
     loadInitialScreen(orderedData[0], user, destinations, trips)
   })
   .catch(error => {
@@ -54,4 +55,10 @@ const createMatchingTrips = (user, tripData, destinationData) => {
   })
   tripsByUser.forEach(trip => createNewTrip(trip))
   destinationsByUserTrips.forEach(destination => createDestination(destination))
+}
+
+const sortTripsByDate = trips => {
+  return trips.sort((a, b) => {
+    return (new Date(b.date)) - (new Date(a.date))
+  })
 }

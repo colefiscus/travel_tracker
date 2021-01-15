@@ -9,4 +9,12 @@ export class Trip {
     this.status = trip.status;
     this.suggestedActivities = trip.suggestedActivities;
   }
+
+  determineDateRange() {
+    let endDate = new Date(this.date);
+    endDate.setDate(endDate.getDate() + this.duration);
+    let finalEndDate = endDate.toLocaleDateString()
+    console.log({startDate: this.date, endDate: finalEndDate})
+    // return {startDate: startDate, endDate: endDate};
+  }
 }
