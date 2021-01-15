@@ -12,10 +12,10 @@ export class Trip {
 
   determineDateRange() {
     const startDate = new Date(this.date);
-    const finalStartDate = startDate.toDateString();
+    const formattedStartDate = startDate.toDateString();
     const endDate = new Date(this.date);
     endDate.setDate(endDate.getDate() + this.duration);
-    const finalEndDate = endDate.toDateString()
-    return {startDate: finalStartDate, endDate: finalEndDate};
+    const formattedEndDate = endDate.toDateString()
+    return {startDate: formattedStartDate, endDate: formattedEndDate};
   }
 }
