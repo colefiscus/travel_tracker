@@ -18,19 +18,23 @@ export class User {
   }
 
   determineRank(points) {
-    let rank;
+    let rank, pointsToNextRank;
     switch (true) {
       case points < 10000:
         rank = "Explorer";
+        pointsToNextRank = 10000 - points;
         break;
       case points >= 10000 && points < 24999:
         rank = "Pioneer";
+        pointsToNextRank = 25000 - points;
         break;
       case points >= 25000 && points < 39999:
         rank = "Adventurer";
+        pointsToNextRank = 40000 - points;
         break;
       case points >= 40000 && points < 54999:
         rank = "Pathfinder";
+        pointsToNextRank = 55000 - points;
         break;
       case points >= 55000:
         rank = "Trailblazer";
@@ -39,6 +43,6 @@ export class User {
         rank = "Invalid Data";
         return;
     }
-    return rank;
+    return {rank: rank, pointsToNextRank: pointsToNextRank};
   }
 }

@@ -15,8 +15,8 @@ export const changeUserSummary = (user, destinations, trips) => {
   const rank = user.determineRank(points)
   userSummary.innerHTML = `
   <p>Nice job! You've earned ${points} points this year!</p>
-  <p>Your Rank: ${rank}</p>
-  <p>Next Rank: 454 points</p>
+  <p>Your Rank: ${rank.rank}</p>
+  <p>Next Rank: ${rank.pointsToNextRank} points</p>
   `
 }
 
