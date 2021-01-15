@@ -6,7 +6,7 @@ export const changeUserName = user => {
 }
 
 export const changeUserSummary = user => {
-
+  
 }
 
 export const addUserTrips = (trips, destinations) => {
