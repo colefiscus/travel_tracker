@@ -8,7 +8,7 @@ import * as apiCalls from "./util.js";
 
 import * as domUpdates from "./DOMupdate.js";
 
-const singleUser = apiCalls.getSingleUser(21);
+const singleUser = apiCalls.getSingleUser(50);
 const allTrips = apiCalls.getAllTrips();
 const allDestinations = apiCalls.getAllDestinations();
 
@@ -18,7 +18,6 @@ const destinations = [];
 
 Promise.all([singleUser, allTrips, allDestinations])
   .then(orderedData => {
-    // console.log(orderedData);
     createNewUser(orderedData[0]);
     domUpdates.changeUserName(orderedData[0]);
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations)
@@ -41,15 +40,6 @@ const createNewUser = userData => {
   user = new User(userData);
 }
 
-const createMatchingTrips = (user, tripData, destinationData) => {
-  const tripsByUser = tripData.filter(trip => trip.userID === user.id);
-  const destinationsByUserTrips = tripsByUser.map(trip => {
-     return destinationData.find(destination => destination.id === trip.destinationID)
-  })
-  tripsByUser.forEach(trip => createNewTrip(trip))
-  destinationsByUserTrips.forEach(destination => createDestination(destination))
-}
-
 const createNewTrip = filteredTrip => {
   const trip = new Trip(filteredTrip)
   trips.push(trip)
@@ -58,4 +48,13 @@ const createNewTrip = filteredTrip => {
 const createDestination = filteredDestination => {
   const destination = new Destination(filteredDestination)
   destinations.push(destination)
+}
+
+const createMatchingTrips = (user, tripData, destinationData) => {
+  const tripsByUser = tripData.filter(trip => trip.userID === user.id);
+  const destinationsByUserTrips = tripsByUser.map(trip => {
+     return destinationData.find(destination => destination.id === trip.destinationID)
+  })
+  tripsByUser.forEach(trip => createNewTrip(trip))
+  destinationsByUserTrips.forEach(destination => createDestination(destination))
 }
