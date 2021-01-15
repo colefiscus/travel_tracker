@@ -1,10 +1,10 @@
 export class Destination {
-  constructor() {
-    this.id = dest.id;
-    this.destination = dest.destination;
-    this.estLodgingCostPerDay = dest.estLodgingCostPerDay;
-    this.estFlightCostPerPers = dest.estFlightCostPerPers;
-    this.image = dest.image;
-    this.alt = dest.alt;
+  constructor(destination) {
+    this.id = destination.id;
+    this.destination = destination.destination;
+    this.estLodgingCostPerDay = destination.estLodgingCostPerDay;
+    this.estFlightCostPerPers = destination.estFlightCostPerPers;
+    this.image = destination.image;
+    this.alt = destination.alt;
   }
 }
