@@ -10,26 +10,25 @@ export const changeUserName = user => {
   userName.innerText = user.name;
 }
 
-export const changeUserSummary = (destinations, trips) => {
+export const changeUserSummary = (user, destinations, trips) => {
   userSummary.innerHTML = `
-  <p>Nice job! This year you've earned ${calculateTotalCost(destinations, trips)} points!</p>
+  <p>Nice job! This year you've earned ${user.calculateTotalCost(destinations, trips)} points!</p>
   <p>Your Rank: Explorer</p>
   <p>Next Rank: 454 points</p>
   `
 }
 
-const calculateTotalCost = (destinations, trips) => {
-  let totalPoints = 0;
-  destinations.forEach(destination => {
-    trips.forEach(trip => {
-      if (trip.destinationID === destination.id) {
-        totalPoints += destination.calculateTripCost(trip)
-      }
-    })
-  })
-  console.log(totalPoints)
-  return totalPoints
-}
+// const calculateTotalCost = (destinations, trips) => {
+//   let totalPoints = 0;
+//   destinations.forEach(destination => {
+//     trips.forEach(trip => {
+//       if (trip.destinationID === destination.id) {
+//         totalPoints += destination.calculateTripCost(trip)
+//       }
+//     })
+//   })
+//   return totalPoints
+// }
 
 export const addUserTrips = (trips, destinations) => {
   for (var i = 0; i < trips.length; i++) {
