@@ -20,7 +20,7 @@ export const changeUserSummary = (user, destinations, trips) => {
   `
 }
 
-export const addUserTrips = (trips, destinations) => {
+export const addUserTrips = (destinations, trips) => {
   for (var i = 0; i < trips.length; i++) {
     const price = destinations[i].calculateTripCost(trips[i])
     userTrips.innerHTML += `

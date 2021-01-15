@@ -8,7 +8,7 @@ import * as apiCalls from "./util.js";
 
 import * as domUpdates from "./DOMupdate.js";
 
-const singleUser = apiCalls.getSingleUser(21);
+const singleUser = apiCalls.getSingleUser(10);
 const allTrips = apiCalls.getAllTrips();
 const allDestinations = apiCalls.getAllDestinations();
 
@@ -19,21 +19,18 @@ const destinations = [];
 Promise.all([singleUser, allTrips, allDestinations])
   .then(orderedData => {
     createNewUser(orderedData[0]);
-    domUpdates.changeUserName(orderedData[0]);
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations)
-    domUpdates.addUserTrips(trips, destinations);
-    domUpdates.changeUserSummary(user, destinations, trips);
-    // console.log(user)
-    // console.log(trips)
-    // console.log(destinations)
+    loadInitialScreen(orderedData[0], user, destinations, trips)
   })
-  // .catch(error => {
-  //   window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.");
-  //   console.log(error);
-  // });
+  .catch(error => {
+    window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.");
+    console.log(error);
+  });
 
-const loadInitialScreen = user => {
-
+const loadInitialScreen = (data, user, destinations, trips) => {
+  domUpdates.changeUserName(data);
+  domUpdates.addUserTrips(destinations, trips);
+  domUpdates.changeUserSummary(user, destinations, trips)
 }
 
 const createNewUser = userData => {
