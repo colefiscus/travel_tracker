@@ -12,10 +12,10 @@ export const changeUserName = user => {
 
 export const changeUserSummary = (user, destinations, trips) => {
   const points = user.calculateTotalCost(destinations, trips)
-  console.log(points)
+  const rank = user.determineRank(points)
   userSummary.innerHTML = `
   <p>Nice job! You've earned ${points} points this year!</p>
-  <p>Your Rank: Explorer</p>
+  <p>Your Rank: ${rank}</p>
   <p>Next Rank: 454 points</p>
   `
 }

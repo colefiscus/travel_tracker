@@ -8,7 +8,7 @@ import * as apiCalls from "./util.js";
 
 import * as domUpdates from "./DOMupdate.js";
 
-const singleUser = apiCalls.getSingleUser(50);
+const singleUser = apiCalls.getSingleUser(21);
 const allTrips = apiCalls.getAllTrips();
 const allDestinations = apiCalls.getAllDestinations();
 
