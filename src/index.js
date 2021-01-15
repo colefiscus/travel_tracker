@@ -1,10 +1,41 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
+import "./css/base.scss";
 
-// An example of how you tell webpack to use a CSS (SCSS) file
-import './css/base.scss';
+import { User } from "./User.js";
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+import * as apiCalls from "./util.js";
 
-console.log('This is the JavaScript entry file - your code begins here.');
+import * as domUpdates from "./DOMupdate.js";
+
+const singleUser = apiCalls.getSingleUser(5);
+const allTrips = apiCalls.getAllTrips();
+const allDestinations = apiCalls.getAllDestinations();
+
+let user;
+
+Promise.all([singleUser, allTrips, allDestinations])
+  .then(orderedData => {
+    console.log(orderedData);
+    createNewUser(orderedData[0]);
+    domUpdates.changeUserName(orderedData[0]);
+  })
+  .catch(error => {
+    window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.");
+    console.log(error);
+  });
+
+const loadInitialScreen = user => {
+
+}
+
+const createNewUser = userData => {
+  user = new User(userData);
+  console.log("userrrr", user);
+}
+
+const createMatchingTrips = (user, tripData) => {
+
+}
+
+const createDestination = (trips, desinationData) => {
+
+}
