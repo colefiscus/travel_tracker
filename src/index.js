@@ -18,13 +18,13 @@ const destinations = [];
 
 Promise.all([singleUser, allTrips, allDestinations])
   .then(orderedData => {
-    // console.log(orderedData);
+    console.log(orderedData);
     createNewUser(orderedData[0]);
     domUpdates.changeUserName(orderedData[0]);
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations)
     domUpdates.addUserTrips(trips, destinations)
-    console.log(user)
-    console.log(trips)
+    // console.log(user)
+    // console.log(trips)
     console.log(destinations)
   })
   // .catch(error => {
