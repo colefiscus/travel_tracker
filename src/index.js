@@ -1,8 +1,10 @@
-import './css/base.scss';
+import "./css/base.scss";
 
-import { User } from './User.js'
+import { User } from "./User.js"
 
-import * as apiCalls from './util.js'
+import * as apiCalls from "./util.js"
+
+import * as domUpdates from "./DOMupdate.js"
 
 const singleUser = apiCalls.getSingleUser(5)
 const allTrips = apiCalls.getAllTrips()
@@ -12,7 +14,9 @@ let user;
 
 Promise.all([singleUser, allTrips, allDestinations])
   .then(orderedData => {
+    console.log(orderedData)
     createNewUser(orderedData[0])
+    domUpdates.changeUserName(orderedData[0])
   })
   .catch(error => {
     window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.")
@@ -33,5 +37,5 @@ const createMatchingTrips = (user, tripData) => {
 }
 
 const createMatchingDestinations = (trips, desinationData) => {
-  
+
 }
