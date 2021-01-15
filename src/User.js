@@ -14,7 +14,7 @@ export class User {
         }
       })
     })
-    return totalPoints
+    return totalPoints.toFixed();
   }
 
   determineRank(points) {
@@ -38,6 +38,7 @@ export class User {
         break;
       case points >= 55000:
         rank = "Trailblazer";
+        pointsToNextRank = 100000 - points;
         break;
       default:
         rank = "Invalid Data";
