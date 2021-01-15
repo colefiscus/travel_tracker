@@ -8,8 +8,7 @@ export class Destination {
     this.alt = destination.alt;
   }
 
-  calculateTotalTripCost(info) {
-    console.log(this.estLodgingCostPerDay)
+  calculateTripCost(info) {
     const lodgingPrice = this.estLodgingCostPerDay * info.duration;
     const flightPrice = this.estFlightCostPerPers * info.travelers;
     const initialTotal = lodgingPrice + flightPrice;

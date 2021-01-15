@@ -18,14 +18,15 @@ const destinations = [];
 
 Promise.all([singleUser, allTrips, allDestinations])
   .then(orderedData => {
-    console.log(orderedData);
+    // console.log(orderedData);
     createNewUser(orderedData[0]);
     domUpdates.changeUserName(orderedData[0]);
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations)
-    domUpdates.addUserTrips(trips, destinations)
+    domUpdates.addUserTrips(trips, destinations);
+    domUpdates.changeUserSummary(destinations, trips);
     // console.log(user)
     // console.log(trips)
-    console.log(destinations)
+    // console.log(destinations)
   })
   // .catch(error => {
   //   window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.");
