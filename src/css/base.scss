@@ -22,17 +22,45 @@ header {
 }
 
 .login-corner {
+  width: 30%;
   display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 // ------------------------ BUTTONS ------------------------
 
-button {
-  width: auto;
-  height: 90%;
+.login-button {
+  width: 30%;
+  height: 35%;
   background-color: #003552;
   color: #ffffff;
   border-radius: 10px;
+  margin-left: 20px;
+}
+
+.trip-type-buttons > button {
+  width: 15%;
+  height: 100%;
+  background-color: #003552;
+  color: #ffffff;
+  // border-radius: 30px/60px;
+}
+
+.trip-selection > button {
+  width: 25%;
+  height: 100%;
+  background-color: #003552;
+  color: #ffffff;
+  border-radius: 20px;
+}
+
+.trip-type-right {
+  border-radius: 0 20px 20px 0;
+}
+
+.trip-type-left {
+  border-radius: 20px 0 0 20px;
 }
 
 // ------------------------ USER SUMMARY ------------------------
@@ -43,8 +71,8 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border-left: 3px solid #202931;
-  border-right: 3px solid #202931;
+  border-left: 12px double #56CBF9;
+  border-right: 12px double #EFD1DC;
   background-color: #F5F5F5
 }
 
@@ -67,7 +95,15 @@ main {
 
 .trip-type {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trip-type-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
 }
 
 .user-trips {
@@ -87,6 +123,8 @@ img {
 }
 
 footer {
+  background-color: #EFD1DC;
+  border-top: 3px double #202931;
   width: 100%;
   display: flex;
   align-items: center;
