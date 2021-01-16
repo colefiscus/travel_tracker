@@ -22,6 +22,9 @@ Promise.all([singleUser, allTrips, allDestinations])
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations)
     sortTripsByDate(trips)
     loadInitialScreen(orderedData[0], user, destinations, trips)
+    console.log(orderedData[0])
+    console.log(orderedData[1])
+    console.log(orderedData[2])
   })
   .catch(error => {
     window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.");

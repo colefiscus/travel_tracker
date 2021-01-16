@@ -1,6 +1,13 @@
 const userName = document.querySelector(".user-account");
 const userTrips = document.querySelector(".user-trips");
-const userSummary = document.querySelector(".user-summary")
+const userSummary = document.querySelector(".user-summary");
+const myTrips = document.querySelector(".my-trips-button");
+const newTrips = document.querySelector(".new-trips-button");
+const allTrips = document.querySelector(".all-trips");
+const pastTrips = document.querySelector(".past-trips");
+const presentTrips = document.querySelector(".present-trips");
+const futureTrips = document.querySelector(".future-trips");
+const pendingTrips = document.querySelector(".pending-trips");
 
 // NEED FOR CALCULATING FUTURE TRIP COST???
 // const travelersInput = document.querySelector(".");
@@ -18,6 +25,10 @@ export const changeUserSummary = (user, destinations, trips) => {
   <p>Your Rank: ${rank.rank}</p>
   <p>Next Rank: ${rank.pointsToNextRank} points</p>
   `
+}
+
+export const filterTrips = (destinations, trips) => {
+  
 }
 
 export const addUserTrips = (destinations, trips) => {

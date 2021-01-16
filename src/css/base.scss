@@ -56,12 +56,12 @@ header {
   border-radius: 20px;
 }
 
-.trip-type-right {
-  border-radius: 0 20px 20px 0;
+.all-trips{
+  border-radius: 20px 0 0 20px;
 }
 
-.trip-type-left {
-  border-radius: 20px 0 0 20px;
+.pending-trips {
+  border-radius: 0 20px 20px 0;
 }
 
 // ------------------------ USER SUMMARY ------------------------
