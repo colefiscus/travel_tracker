@@ -1,5 +1,7 @@
 import "./css/base.scss";
 
+import "./images/pink-clouds.jpg";
+
 import { User } from "./User.js";
 import { Trip } from "./Trip.js";
 import { Destination } from "./Destination.js"

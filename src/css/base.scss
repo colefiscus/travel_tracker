@@ -7,6 +7,9 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  font-family: 'Nixie One';
+  background-color: #EBEBEB;
+  background-image: url(https://images.pexels.com/photos/911738/pexels-photo-911738.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
 }
 
 // ------------------------HEADER ------------------------
@@ -15,11 +18,21 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border: 3px solid darkblue;
+  background-color: #56CBF9
 }
 
 .login-corner {
   display: flex;
+}
+
+// ------------------------ BUTTONS ------------------------
+
+button {
+  width: auto;
+  height: 90%;
+  background-color: #003552;
+  color: #ffffff;
+  border-radius: 10px;
 }
 
 // ------------------------ USER SUMMARY ------------------------
@@ -30,39 +43,36 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border: 3px solid red;
+  border-left: 3px solid #202931;
+  border-right: 3px solid #202931;
+  background-color: #F5F5F5
 }
 
 .user-summary {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 3px solid darkblue;
 }
 
 .navigation {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border: 3px solid darkblue;
 }
 
 .trip-selection {
   display: flex;
   justify-content: space-around;
-  border: 3px solid darkblue;
 }
 
 .trip-type {
   display: flex;
   justify-content: space-around;
-  border: 3px solid darkblue;
 }
 
 .user-trips {
   display: flex;
   flex-direction: column;
-  border: 3px solid darkblue;
 }
 
 .trip {
@@ -81,5 +91,4 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border: 3px solid darkblue;
 }
