@@ -25,7 +25,7 @@ export const addUserTrips = (destinations, trips) => {
     const dates = trips[i].determineDateRange();
     const price = destinations[i].calculateTripCost(trips[i])
     userTrips.innerHTML += `
-    <article class="trip" id="${trips[i].id}">
+    <article class="trip trip-border" id="${trips[i].id}">
       <img src="${destinations[i].image}" alt="${destinations[i].alt}">
       <h2>${destinations[i].destination}</h2>
       <p>Dates: ${dates.startDate} - ${dates.endDate}</p>

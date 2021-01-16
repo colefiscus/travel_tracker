@@ -1,7 +1,7 @@
 html,
 body {
   margin: 0;
-  height: 100vh;
+  height: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: #56CBF9
+  background-color: #89DAFA;
+  border-bottom: 3px double #202931;
 }
 
 .login-corner {
@@ -33,7 +34,7 @@ header {
 .login-button {
   width: 30%;
   height: 35%;
-  background-color: #003552;
+  background-color: #004266;
   color: #ffffff;
   border-radius: 10px;
   margin-left: 20px;
@@ -42,15 +43,15 @@ header {
 .trip-type-buttons > button {
   width: 15%;
   height: 100%;
-  background-color: #003552;
-  color: #ffffff;
+  background-color: #D8F3FD;
+  color: #000000;
   // border-radius: 30px/60px;
 }
 
 .trip-selection > button {
   width: 25%;
   height: 100%;
-  background-color: #003552;
+  background-color: #004266;
   color: #ffffff;
   border-radius: 20px;
 }
@@ -71,7 +72,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border-left: 12px double #56CBF9;
+  border-left: 12px double #89DAFA;
   border-right: 12px double #EFD1DC;
   background-color: #F5F5F5
 }
@@ -115,6 +116,13 @@ main {
   display: flex;
   // flex-direction: column;
   align-items: center;
+  border: 5px solid black;
+  border-image-slice: 1;
+  margin: 3%;
+}
+
+.trip-border {
+  border-image-source: linear-gradient(to left, #EFD1DC, #E0C867, #89DAFA);
 }
 
 img {
