@@ -89,13 +89,14 @@ export const showDestinationOpts = destinations => {
     const initialPrice = destination.estLodgingCostPerDay * durationInput.value + destination.estFlightCostPerPers * travelersInput.value;
     const priceWithFee = initialPrice + (initialPrice * 0.1);
     userTrips.innerHTML += `
-    <article class="trip trip-border" id="${new Date()}">
+    <article class="trip trip-border" id="${destination.id}">
       <img src="${destination.image}" alt="${destination.alt}">
       <h2>${destination.destination}</h2>
       <p>Departure: ${dateInput.value}</p>
       <p>Days: ${durationInput.value}</p>
       <p>Wanderers: ${travelersInput.value}</p>
       <p class="trip-price">Total Cost: $${priceWithFee}</p>
+      <button class="book-trip-button" type="button">BOOK</button>
     </article>
     `
   })
