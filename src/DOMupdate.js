@@ -7,11 +7,14 @@ const allTrips = document.querySelector(".all-trips");
 const pastTrips = document.querySelector(".past-trips");
 const presentTrips = document.querySelector(".present-trips");
 const futureTrips = document.querySelector(".future-trips");
-const pendingTrips = document.querySelector(".pending-trips");
+// const pendingTrips = document.querySelector(".pending-trips");
+
 
 // NEED FOR CALCULATING FUTURE TRIP COST???
 // const travelersInput = document.querySelector(".");
 // const durationInput = document.querySelector(".");
+
+
 
 export const changeUserName = user => {
   userName.innerText = user.name;
@@ -27,11 +30,10 @@ export const changeUserSummary = (user, destinations, trips) => {
   `
 }
 
-export const filterTrips = (destinations, trips) => {
-  console.log(trips.filter(trip => trip.status === "pending"))
-}
+
 
 export const addUserTrips = (destinations, trips) => {
+  userTrips.innerHTML = ""
   for (var i = 0; i < trips.length; i++) {
     const dates = trips[i].determineDateRange();
     const price = destinations[i].calculateTripCost(trips[i])
