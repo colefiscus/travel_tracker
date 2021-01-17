@@ -34,18 +34,22 @@ export const changeUserSummary = (user, destinations, trips) => {
 
 export const addUserTrips = (destinations, trips) => {
   userTrips.innerHTML = ""
-  for (var i = 0; i < trips.length; i++) {
-    const dates = trips[i].determineDateRange();
-    const price = destinations[i].calculateTripCost(trips[i])
-    userTrips.innerHTML += `
-    <article class="trip trip-border" id="${trips[i].id}">
-      <img src="${destinations[i].image}" alt="${destinations[i].alt}">
-      <h2>${destinations[i].destination}</h2>
-      <p>Dates: ${dates.startDate} - ${dates.endDate}</p>
-      <p># of Travelers: ${trips[i].travelers}</p>
-      <p class="trip-price">Total Cost: $${price}</p>
-      <p>Status: ${trips[i].status}</p>
-    </article>
-    `
+  if (trips.length) {
+    for (var i = 0; i < trips.length; i++) {
+      const dates = trips[i].determineDateRange();
+      const price = destinations[i].calculateTripCost(trips[i])
+      userTrips.innerHTML += `
+      <article class="trip trip-border" id="${trips[i].id}">
+        <img src="${destinations[i].image}" alt="${destinations[i].alt}">
+        <h2>${destinations[i].destination}</h2>
+        <p>Dates: ${dates.startDate} - ${dates.endDate}</p>
+        <p># of Travelers: ${trips[i].travelers}</p>
+        <p class="trip-price">Total Cost: $${price}</p>
+        <p>Status: ${trips[i].status}</p>
+      </article>
+      `
+    }
+  } else {
+    userTrips.innerHTML = `<p class="trip-type">Uh-oh, no trips of yours fit that criteria</p>`
   }
 }

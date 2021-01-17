@@ -7,13 +7,12 @@ import { Destination } from "./Destination.js"
 import * as apiCalls from "./util.js";
 import * as domUpdates from "./DOMupdate.js";
 
-const singleUser = apiCalls.getSingleUser(9);
+const singleUser = apiCalls.getSingleUser(36);
 const allTrips = apiCalls.getAllTrips();
 const allDestinations = apiCalls.getAllDestinations();
 
 const pendingTrips = document.querySelectorAll(".trip-filter");
-
-pendingTrips.forEach(button => addEventListener("click", filterTrips))
+pendingTrips.forEach(button => addEventListener("click", filterTrips));
 
 let user;
 const trips = [];
@@ -32,6 +31,41 @@ Promise.all([singleUser, allTrips, allDestinations])
     window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.");
     console.log(error);
   })
+
+const matchDestinationsToTrips = (destinations, trips) => {
+  return destinations.filter(destination => {
+    return trips.find(trip => trip.destinationID == destination.id)
+  })
+}
+
+const loadInitialScreen = (data, user, destinations, trips) => {
+  domUpdates.changeUserName(data);
+  domUpdates.addUserTrips(destinations, trips);
+  domUpdates.changeUserSummary(user, destinations, trips)
+}
+
+const createNewUser = userData => {
+  user = new User(userData);
+}
+
+const createNewTrip = filteredTrip => {
+  const trip = new Trip(filteredTrip)
+  trips.push(trip)
+}
+
+const createDestination = filteredDestination => {
+  const destination = new Destination(filteredDestination)
+  destinations.push(destination)
+}
+
+const createMatchingTrips = (user, tripData, destinationData) => {
+  const tripsByUser = tripData.filter(trip => trip.userID === user.id);
+  const destinationsByUserTrips = tripsByUser.map(trip => {
+     return destinationData.find(destination => destination.id === trip.destinationID)
+  })
+  tripsByUser.forEach(trip => createNewTrip(trip))
+  destinationsByUserTrips.forEach(destination => createDestination(destination))
+}
 
 function filterTrips(event) {
   if (event.target.classList.contains("pending-trips")) {
@@ -70,42 +104,6 @@ function filterTrips(event) {
     domUpdates.addUserTrips(matchedDestinations, presentTrips)
   }
 }
-
-const matchDestinationsToTrips = (destinations, trips) => {
-  return destinations.filter(destination => {
-    return trips.find(trip => trip.destinationID == destination.id)
-  })
-}
-
-const loadInitialScreen = (data, user, destinations, trips) => {
-  domUpdates.changeUserName(data);
-  domUpdates.addUserTrips(destinations, trips);
-  domUpdates.changeUserSummary(user, destinations, trips)
-}
-
-const createNewUser = userData => {
-  user = new User(userData);
-}
-
-const createNewTrip = filteredTrip => {
-  const trip = new Trip(filteredTrip)
-  trips.push(trip)
-}
-
-const createDestination = filteredDestination => {
-  const destination = new Destination(filteredDestination)
-  destinations.push(destination)
-}
-
-const createMatchingTrips = (user, tripData, destinationData) => {
-  const tripsByUser = tripData.filter(trip => trip.userID === user.id);
-  const destinationsByUserTrips = tripsByUser.map(trip => {
-     return destinationData.find(destination => destination.id === trip.destinationID)
-  })
-  tripsByUser.forEach(trip => createNewTrip(trip))
-  destinationsByUserTrips.forEach(destination => createDestination(destination))
-}
-
 // COME BACK TO IF TIME??? -------------------------------
 // const sortTripsByDate = (trips, destinations) => {
 //   const sortedTrips =  trips.sort((a, b) => {
