@@ -11,8 +11,14 @@ const singleUser = apiCalls.getSingleUser(36);
 const allTrips = apiCalls.getAllTrips();
 const allDestinations = apiCalls.getAllDestinations();
 
-const pendingTrips = document.querySelectorAll(".trip-filter");
-pendingTrips.forEach(button => addEventListener("click", filterTrips));
+const filterTripButtons = document.querySelectorAll(".trip-filter");
+const myTripsButton = document.querySelector(".my-trips-button");
+const bookTripButton = document.querySelector(".new-trip-button");
+filterTripButtons.forEach(button => addEventListener("click", filterTrips));
+myTripsButton.addEventListener("click", () => {
+  domUpdates.addUserTrips(destinations, trips)
+});
+bookTripButton.addEventListener("click", domUpdates.showUserTripInputs);
 
 let user;
 const trips = [];
@@ -104,6 +110,8 @@ function filterTrips(event) {
     domUpdates.addUserTrips(matchedDestinations, presentTrips)
   }
 }
+
+
 // COME BACK TO IF TIME??? -------------------------------
 // const sortTripsByDate = (trips, destinations) => {
 //   const sortedTrips =  trips.sort((a, b) => {

@@ -19,18 +19,29 @@
         <p>Next Rank: 454 points</p>
       </section>
       <section class="navigation">
-        <nav class="trip-selection">
-          <button class="my-trips-button" type="button">MY TRIPS</button>
-          <button class"new-trips-button" type="button">BOOK TRIPS</button>
+        <nav class="trip-selection-buttons">
+          <button class="trip-selection-buttons my-trips-button" type="button">MY TRIPS</button>
+          <button class="trip-selection-buttons new-trip-button" type="button">BOOK NEW TRIP</button>
         </nav>
-        <nav class="trip-type">
-          <h1>FILTER TRIPS</h1>
-          <div class="trip-type-buttons">
-            <button class="all-trips trip-filter" type="button" name="button">ALL</button>
-            <button class="past-trips trip-filter" type="button">PAST</button>
-            <button class="present-trips trip-filter" type="button">PRESENT</button>
-            <button class="future-trips trip-filter" type="button">FUTURE</button>
-            <button class="pending-trips trip-filter" type="button">PENDING</button>
+        <nav class="trip-selection">
+          <div class="trip-inputs">
+            <label for="start-date">Start Date:</label>
+            <input type="date" name="start-date" required>
+            <label for"number-of-travelers">How Many People?</label>
+            <input type="number" min="1" max="12" name="number-of-travelers" placeholder="1" required>
+            <label for="duration">How Many Days?</label>
+            <input type="number" class="trip-duration"  min="1" max="30" name="duration" placeholder="1" required>
+            <button class="submit-button" type="button">Find Trips</button>
+          </div>
+          <div class="trip-filter-section">
+            <h1>FILTER TRIPS</h1>
+            <div class="trip-type-buttons">
+              <button class="all-trips trip-filter" type="button" name="button">ALL</button>
+              <button class="past-trips trip-filter" type="button">PAST</button>
+              <button class="present-trips trip-filter" type="button">PRESENT</button>
+              <button class="future-trips trip-filter" type="button">FUTURE</button>
+              <button class="pending-trips trip-filter" type="button">PENDING</button>
+            </div>
           </div>
         </nav>
       </section>

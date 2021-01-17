@@ -1,20 +1,13 @@
 const userName = document.querySelector(".user-account");
 const userTrips = document.querySelector(".user-trips");
 const userSummary = document.querySelector(".user-summary");
-const myTrips = document.querySelector(".my-trips-button");
-const newTrips = document.querySelector(".new-trips-button");
-const allTrips = document.querySelector(".all-trips");
-const pastTrips = document.querySelector(".past-trips");
-const presentTrips = document.querySelector(".present-trips");
-const futureTrips = document.querySelector(".future-trips");
-// const pendingTrips = document.querySelector(".pending-trips");
+const tripSelection = document.querySelector(".trip-filter-section");
+const tripInputs = document.querySelector(".trip-inputs");
+const myTripsButton = document.querySelector(".my-trips-button");
+const newTripButton = document.querySelector(".new-trip-button");
 
-
-// NEED FOR CALCULATING FUTURE TRIP COST???
 // const travelersInput = document.querySelector(".");
 // const durationInput = document.querySelector(".");
-
-
 
 export const changeUserName = user => {
   userName.innerText = user.name;
@@ -30,9 +23,15 @@ export const changeUserSummary = (user, destinations, trips) => {
   `
 }
 
-
-
 export const addUserTrips = (destinations, trips) => {
+  if (tripSelection.classList.contains("hidden")) {
+    newTripButton.toggleAttribute("disabled")
+    tripSelection.classList.toggle("hidden");
+    tripSelection.classList.toggle("trip-filter-section")
+  }
+  myTripsButton.setAttribute("disabled", true)
+  myTripsButton.classList.toggle("selected-button")
+  tripInputs.classList.add("hidden");
   userTrips.innerHTML = ""
   if (trips.length) {
     for (var i = 0; i < trips.length; i++) {
@@ -52,4 +51,18 @@ export const addUserTrips = (destinations, trips) => {
   } else {
     userTrips.innerHTML = `<p class="trip-type">Uh-oh, no trips of yours fit that criteria</p>`
   }
+}
+
+export const showUserTripInputs = () => {
+  myTripsButton.toggleAttribute("disabled");
+  newTripButton.toggleAttribute("disabled");
+  tripSelection.classList.toggle("hidden");
+  tripSelection.classList.toggle("trip-filter-section");
+  tripInputs.classList.toggle("hidden");
+  userTrips.innerHTML = "";
+}
+
+export const displayNewTrips = (destinations, trips) => {
+  const tripDuration = document.querySelector(".trip-duration");
+  console.log(tripDuration.value);
 }
