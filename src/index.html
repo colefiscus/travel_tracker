@@ -26,11 +26,11 @@
         <nav class="trip-selection">
           <div class="trip-inputs">
             <label for="start-date">Start Date:</label>
-            <input type="date" name="start-date" required>
+            <input class="start-date-input" type="date" name="start-date" required>
             <label for"number-of-travelers">How Many People?</label>
-            <input type="number" min="1" max="12" name="number-of-travelers" placeholder="1" required>
+            <input class="travelers-input" type="number" min="1" max="12" name="number-of-travelers" value="1" required>
             <label for="duration">How Many Days?</label>
-            <input type="number" class="trip-duration"  min="1" max="30" name="duration" placeholder="1" required>
+            <input class="trip-duration" value="1" type="number" min="1" max="30" name="duration" required>
             <button class="submit-button" type="button">Find Trips</button>
           </div>
           <div class="trip-filter-section">

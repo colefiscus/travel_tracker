@@ -25,10 +25,12 @@ tripInputs.addEventListener("click", displayNewTrips);
 let user;
 const trips = [];
 const destinations = [];
+const allDestinationsOpts = [];
 
 Promise.all([singleUser, allTrips, allDestinations])
   .then(orderedData => {
     createNewUser(orderedData[0]);
+    createDestinationOptArray(orderedData[2]);
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations)
     loadInitialScreen(orderedData[0], user, destinations, trips)
     // console.log(orderedData[0])
@@ -61,9 +63,16 @@ const createNewTrip = filteredTrip => {
   trips.push(trip)
 }
 
-const createDestination = filteredDestination => {
+const createUserDestination = filteredDestination => {
   const destination = new Destination(filteredDestination)
   destinations.push(destination)
+}
+
+const createDestinationOptArray = allDestinations => {
+  allDestinations.destinations.forEach(destination => {
+    const destinationOpt = new Destination(destination);
+    allDestinationsOpts.push(destinationOpt);
+  })
 }
 
 const createMatchingTrips = (user, tripData, destinationData) => {
@@ -72,7 +81,7 @@ const createMatchingTrips = (user, tripData, destinationData) => {
      return destinationData.find(destination => destination.id === trip.destinationID)
   })
   tripsByUser.forEach(trip => createNewTrip(trip))
-  destinationsByUserTrips.forEach(destination => createDestination(destination))
+  destinationsByUserTrips.forEach(destination => createUserDestination(destination))
 }
 
 function filterTrips() {
@@ -113,9 +122,11 @@ function filterTrips() {
   }
 }
 
+
+
 function displayNewTrips() {
   if (event.target.classList.contains("submit-button")) {
-    domUpdates.displayNewTrips()
+    domUpdates.displayNewTrips(destinations, trips)
   }
 }
 

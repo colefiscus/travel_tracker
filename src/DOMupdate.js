@@ -1,13 +1,13 @@
 const userName = document.querySelector(".user-account");
 const userTrips = document.querySelector(".user-trips");
 const userSummary = document.querySelector(".user-summary");
-const tripSelection = document.querySelector(".trip-filter-section");
-const tripInputs = document.querySelector(".trip-inputs");
 const myTripsButton = document.querySelector(".my-trips-button");
 const newTripButton = document.querySelector(".new-trip-button");
-
-// const travelersInput = document.querySelector(".");
-// const durationInput = document.querySelector(".");
+const tripSelection = document.querySelector(".trip-filter-section");
+const tripInputs = document.querySelector(".trip-inputs");
+const dateInput = document.querySelector(".start-date-input");
+const travelersInput = document.querySelector(".travelers-input");
+const durationInput = document.querySelector(".trip-duration");
 
 export const changeUserName = user => {
   userName.innerText = user.name;
@@ -65,5 +65,7 @@ export const showUserTripInputs = () => {
 }
 
 export const displayNewTrips = (destinations, trips) => {
-  console.log(5);
+  if (dateInput.value) {
+    console.log(dateInput.value);
+  }
 }
