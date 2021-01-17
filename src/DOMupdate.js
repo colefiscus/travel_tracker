@@ -32,6 +32,7 @@ export const addUserTrips = (destinations, trips) => {
   myTripsButton.setAttribute("disabled", true)
   myTripsButton.classList.toggle("selected-button")
   tripInputs.classList.add("hidden");
+  tripInputs.classList.remove("trip-inputs");
   userTrips.innerHTML = ""
   if (trips.length) {
     for (var i = 0; i < trips.length; i++) {
@@ -59,10 +60,10 @@ export const showUserTripInputs = () => {
   tripSelection.classList.toggle("hidden");
   tripSelection.classList.toggle("trip-filter-section");
   tripInputs.classList.toggle("hidden");
+  tripInputs.classList.toggle("trip-inputs")
   userTrips.innerHTML = "";
 }
 
 export const displayNewTrips = (destinations, trips) => {
-  const tripDuration = document.querySelector(".trip-duration");
-  console.log(tripDuration.value);
+  console.log(5);
 }

@@ -14,11 +14,13 @@ const allDestinations = apiCalls.getAllDestinations();
 const filterTripButtons = document.querySelectorAll(".trip-filter");
 const myTripsButton = document.querySelector(".my-trips-button");
 const bookTripButton = document.querySelector(".new-trip-button");
+const tripInputs = document.querySelector(".trip-inputs")
 filterTripButtons.forEach(button => addEventListener("click", filterTrips));
 myTripsButton.addEventListener("click", () => {
   domUpdates.addUserTrips(destinations, trips)
 });
 bookTripButton.addEventListener("click", domUpdates.showUserTripInputs);
+tripInputs.addEventListener("click", displayNewTrips);
 
 let user;
 const trips = [];
@@ -73,7 +75,7 @@ const createMatchingTrips = (user, tripData, destinationData) => {
   destinationsByUserTrips.forEach(destination => createDestination(destination))
 }
 
-function filterTrips(event) {
+function filterTrips() {
   if (event.target.classList.contains("pending-trips")) {
     const pendingTrips = trips.filter(trip => trip.status === "pending");
     const matchedDestinations = matchDestinationsToTrips(destinations, pendingTrips)
@@ -111,6 +113,11 @@ function filterTrips(event) {
   }
 }
 
+function displayNewTrips() {
+  if (event.target.classList.contains("submit-button")) {
+    domUpdates.displayNewTrips()
+  }
+}
 
 // COME BACK TO IF TIME??? -------------------------------
 // const sortTripsByDate = (trips, destinations) => {

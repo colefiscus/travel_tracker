@@ -114,6 +114,13 @@ main {
   align-items: center;
 }
 
+.trip-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .trip-type-buttons {
   width: 100%;
   display: flex;
