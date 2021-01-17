@@ -125,8 +125,11 @@ function filterTrips() {
 
 
 function displayNewTrips() {
-  if (event.target.classList.contains("submit-button")) {
-    domUpdates.displayNewTrips(destinations, trips)
+  if (event.target.classList.contains("submit-button") && event.target.innerText === "Find Trips") {
+    domUpdates.setTripInputs()
+    domUpdates.showDestinationOpts(allDestinationsOpts)
+  } else if (event.target.classList.contains("submit-button") && event.target.innerText === "RESET") {
+    domUpdates.resetTripInputs()
   }
 }
 

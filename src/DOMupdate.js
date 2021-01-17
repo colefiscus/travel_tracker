@@ -8,6 +8,7 @@ const tripInputs = document.querySelector(".trip-inputs");
 const dateInput = document.querySelector(".start-date-input");
 const travelersInput = document.querySelector(".travelers-input");
 const durationInput = document.querySelector(".trip-duration");
+const submitButton = document.querySelector(".submit-button");
 
 export const changeUserName = user => {
   userName.innerText = user.name;
@@ -24,6 +25,7 @@ export const changeUserSummary = (user, destinations, trips) => {
 }
 
 export const addUserTrips = (destinations, trips) => {
+  resetTripInputs();
   if (tripSelection.classList.contains("hidden")) {
     newTripButton.toggleAttribute("disabled")
     tripSelection.classList.toggle("hidden");
@@ -43,8 +45,8 @@ export const addUserTrips = (destinations, trips) => {
         <img src="${destinations[i].image}" alt="${destinations[i].alt}">
         <h2>${destinations[i].destination}</h2>
         <p>Dates: ${dates.startDate} - ${dates.endDate}</p>
-        <p># of Travelers: ${trips[i].travelers}</p>
-        <p class="trip-price">Total Cost: $${price}</p>
+        <p>Number of Wanderers: ${trips[i].travelers}</p>
+        <p class="trip-price">Points Earned: ${price}</p>
         <p>Status: ${trips[i].status}</p>
       </article>
       `
@@ -57,6 +59,7 @@ export const addUserTrips = (destinations, trips) => {
 export const showUserTripInputs = () => {
   myTripsButton.toggleAttribute("disabled");
   newTripButton.toggleAttribute("disabled");
+  dateInput.valueAsDate = new Date();
   tripSelection.classList.toggle("hidden");
   tripSelection.classList.toggle("trip-filter-section");
   tripInputs.classList.toggle("hidden");
@@ -64,8 +67,36 @@ export const showUserTripInputs = () => {
   userTrips.innerHTML = "";
 }
 
-export const displayNewTrips = (destinations, trips) => {
-  if (dateInput.value) {
-    console.log(dateInput.value);
-  }
+export const setTripInputs = () => {
+    dateInput.setAttribute("readonly", true);
+    durationInput.setAttribute("readonly", true);
+    travelersInput.setAttribute("readonly", true);
+    submitButton.innerText = `RESET`;
+}
+
+export const resetTripInputs = () => {
+  dateInput.removeAttribute("readonly");
+  durationInput.removeAttribute("readonly");
+  travelersInput.removeAttribute("readonly");
+  submitButton.innerText = `Find Trips`;
+  dateInput.valueAsDate = new Date();
+  travelersInput.value = "1";
+  durationInput.value = "1";
+}
+
+export const showDestinationOpts = destinations => {
+  destinations.forEach(destination => {
+    const initialPrice = destination.estLodgingCostPerDay * durationInput.value + destination.estFlightCostPerPers * travelersInput.value;
+    const priceWithFee = initialPrice + (initialPrice * 0.1);
+    userTrips.innerHTML += `
+    <article class="trip trip-border" id="${new Date()}">
+      <img src="${destination.image}" alt="${destination.alt}">
+      <h2>${destination.destination}</h2>
+      <p>Departure: ${dateInput.value}</p>
+      <p>Days: ${durationInput.value}</p>
+      <p>Wanderers: ${travelersInput.value}</p>
+      <p class="trip-price">Total Cost: $${priceWithFee}</p>
+    </article>
+    `
+  })
 }
