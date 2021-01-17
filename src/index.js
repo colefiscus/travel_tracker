@@ -44,6 +44,7 @@ function filterTrips(event) {
     const pastTrips = trips.filter(trip => {
       const tripDate = new Date(trip.date)
       const today = new Date
+      today.setDate(today.getDate() - trip.duration)
       return today > tripDate
     })
     const matchedDestinations = matchDestinationsToTrips(destinations, pastTrips)
@@ -56,6 +57,17 @@ function filterTrips(event) {
     })
     const matchedDestinations = matchDestinationsToTrips(destinations, futureTrips)
     domUpdates.addUserTrips(matchedDestinations, futureTrips)
+  }
+  else if (event.target.classList.contains("present-trips")) {
+    const presentTrips = trips.filter(trip => {
+      const tripDate = new Date(trip.date)
+      const today = new Date()
+      const endDate = new Date(trip.date)
+      endDate.setDate(endDate.getDate() + trip.duration)
+      return (today > tripDate && today < endDate)
+    })
+    const matchedDestinations = matchDestinationsToTrips(destinations, presentTrips)
+    domUpdates.addUserTrips(matchedDestinations, presentTrips)
   }
 }
 
