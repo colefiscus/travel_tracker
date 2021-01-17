@@ -28,7 +28,7 @@ export const changeUserSummary = (user, destinations, trips) => {
 }
 
 export const filterTrips = (destinations, trips) => {
-  
+  console.log(trips.filter(trip => trip.status === "pending"))
 }
 
 export const addUserTrips = (destinations, trips) => {
