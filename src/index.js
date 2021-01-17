@@ -11,16 +11,22 @@ const singleUser = apiCalls.getSingleUser(36);
 const allTrips = apiCalls.getAllTrips();
 const allDestinations = apiCalls.getAllDestinations();
 
+const dateInput = document.querySelector(".start-date-input");
+const travelersInput = document.querySelector(".travelers-input");
+const durationInput = document.querySelector(".trip-duration");
+
 const filterTripButtons = document.querySelectorAll(".trip-filter");
 const myTripsButton = document.querySelector(".my-trips-button");
 const bookTripButton = document.querySelector(".new-trip-button");
 const tripInputs = document.querySelector(".trip-inputs")
+const newDestinations = document.querySelector(".user-trips")
 filterTripButtons.forEach(button => addEventListener("click", filterTrips));
 myTripsButton.addEventListener("click", () => {
   domUpdates.addUserTrips(destinations, trips)
 });
 bookTripButton.addEventListener("click", domUpdates.showUserTripInputs);
 tripInputs.addEventListener("click", displayNewTrips);
+newDestinations.addEventListener("click", bookNewTrip);
 
 let user;
 const trips = [];
@@ -122,14 +128,29 @@ function filterTrips() {
   }
 }
 
-
-
 function displayNewTrips() {
   if (event.target.classList.contains("submit-button") && event.target.innerText === "Find Trips") {
     domUpdates.setTripInputs()
     domUpdates.showDestinationOpts(allDestinationsOpts)
   } else if (event.target.classList.contains("submit-button") && event.target.innerText === "RESET") {
     domUpdates.resetTripInputs()
+  }
+}
+
+function bookNewTrip() {
+  const eventTarget = event.target
+  if (eventTarget.classList.contains("book-trip-button")) {
+    const options = {
+      id: new Date().getTime(),
+      userID: user.id,
+      destinationID: eventTarget.parentElement.id,
+      travelers: travelersInput.value,
+      date: dateInput.value,
+      duration: durationInput.value,
+      status: "Pending",
+      suggestedActivities: []
+    }
+    apiCalls.addNewTrip(options)
   }
 }
 

@@ -17,16 +17,6 @@ export const getAllDestinations = () => {
 }
 
 export const addNewTrip = options => {
-  const options = {
-    id: new Date(),
-    userID: user.id,
-    destinationID: ,
-    travelers: ,
-    date: ,
-    duration: ,
-    status: "Pending",
-    suggestedActivities: []
-  }
   fetch("http://localhost:3001/api/v1/trips", {
     method: "POST",
     headers: {
