@@ -7,7 +7,7 @@ import { Destination } from "./Destination.js"
 import * as apiCalls from "./util.js";
 import * as domUpdates from "./DOMupdate.js";
 
-const singleUser = apiCalls.getSingleUser(22);
+const singleUser = apiCalls.getSingleUser(9);
 const allTrips = apiCalls.getAllTrips();
 const allDestinations = apiCalls.getAllDestinations();
 
@@ -48,6 +48,14 @@ function filterTrips(event) {
     })
     const matchedDestinations = matchDestinationsToTrips(destinations, pastTrips)
     domUpdates.addUserTrips(matchedDestinations, pastTrips)
+  } else if (event.target.classList.contains("future-trips")) {
+    const futureTrips = trips.filter(trip => {
+      const tripDate = new Date(trip.date)
+      const today = new Date
+      return today < tripDate
+    })
+    const matchedDestinations = matchDestinationsToTrips(destinations, futureTrips)
+    domUpdates.addUserTrips(matchedDestinations, futureTrips)
   }
 }
 
