@@ -1,6 +1,13 @@
 const userName = document.querySelector(".user-account");
 const userTrips = document.querySelector(".user-trips");
-const userSummary = document.querySelector(".user-summary")
+const userSummary = document.querySelector(".user-summary");
+const myTrips = document.querySelector(".my-trips-button");
+const newTrips = document.querySelector(".new-trips-button");
+const allTrips = document.querySelector(".all-trips");
+const pastTrips = document.querySelector(".past-trips");
+const presentTrips = document.querySelector(".present-trips");
+const futureTrips = document.querySelector(".future-trips");
+const pendingTrips = document.querySelector(".pending-trips");
 
 // NEED FOR CALCULATING FUTURE TRIP COST???
 // const travelersInput = document.querySelector(".");
@@ -20,12 +27,16 @@ export const changeUserSummary = (user, destinations, trips) => {
   `
 }
 
+export const filterTrips = (destinations, trips) => {
+  
+}
+
 export const addUserTrips = (destinations, trips) => {
   for (var i = 0; i < trips.length; i++) {
     const dates = trips[i].determineDateRange();
     const price = destinations[i].calculateTripCost(trips[i])
     userTrips.innerHTML += `
-    <article class="trip" id="${trips[i].id}">
+    <article class="trip trip-border" id="${trips[i].id}">
       <img src="${destinations[i].image}" alt="${destinations[i].alt}">
       <h2>${destinations[i].destination}</h2>
       <p>Dates: ${dates.startDate} - ${dates.endDate}</p>

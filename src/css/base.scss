@@ -1,12 +1,15 @@
 html,
 body {
   margin: 0;
-  height: 100vh;
+  height: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  font-family: 'Nixie One';
+  background-color: #EBEBEB;
+  background-image: url(https://images.pexels.com/photos/911738/pexels-photo-911738.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
 }
 
 // ------------------------HEADER ------------------------
@@ -15,11 +18,50 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border: 3px solid darkblue;
+  background-color: #89DAFA;
+  border-bottom: 3px double #202931;
 }
 
 .login-corner {
+  width: 30%;
   display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+// ------------------------ BUTTONS ------------------------
+
+.login-button {
+  width: 30%;
+  height: 35%;
+  background-color: #004266;
+  color: #ffffff;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+
+.trip-type-buttons > button {
+  width: 15%;
+  height: 100%;
+  background-color: #D8F3FD;
+  color: #000000;
+  // border-radius: 30px/60px;
+}
+
+.trip-selection > button {
+  width: 25%;
+  height: 100%;
+  background-color: #004266;
+  color: #ffffff;
+  border-radius: 20px;
+}
+
+.all-trips{
+  border-radius: 20px 0 0 20px;
+}
+
+.pending-trips {
+  border-radius: 0 20px 20px 0;
 }
 
 // ------------------------ USER SUMMARY ------------------------
@@ -30,45 +72,57 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border: 3px solid red;
+  border-left: 12px double #89DAFA;
+  border-right: 12px double #EFD1DC;
+  background-color: #F5F5F5
 }
 
 .user-summary {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 3px solid darkblue;
 }
 
 .navigation {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border: 3px solid darkblue;
 }
 
 .trip-selection {
   display: flex;
   justify-content: space-around;
-  border: 3px solid darkblue;
 }
 
 .trip-type {
   display: flex;
-  justify-content: space-around;
-  border: 3px solid darkblue;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trip-type-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
 }
 
 .user-trips {
   display: flex;
   flex-direction: column;
-  border: 3px solid darkblue;
 }
 
 .trip {
   display: flex;
   // flex-direction: column;
   align-items: center;
+  border: 5px solid black;
+  border-image-slice: 1;
+  margin: 3%;
+}
+
+.trip-border {
+  border-image-source: linear-gradient(to left, #EFD1DC, #E0C867, #89DAFA);
 }
 
 img {
@@ -77,9 +131,10 @@ img {
 }
 
 footer {
+  background-color: #EFD1DC;
+  border-top: 3px double #202931;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border: 3px solid darkblue;
 }
