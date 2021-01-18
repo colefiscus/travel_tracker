@@ -27,17 +27,26 @@ export const changeUserSummary = (user, destinations, trips) => {
 export const addUserTrips = (destinations, trips) => {
   resetTripInputs();
   if (tripSelection.classList.contains("hidden")) {
-    newTripButton.toggleAttribute("disabled")
+    newTripButton.toggleAttribute("disabled");
+    myTripsButton.setAttribute("disabled", true)
     tripSelection.classList.toggle("hidden");
     tripSelection.classList.toggle("trip-filter-section")
+    tripInputs.classList.toggle("hidden");
+    tripInputs.classList.toggle("trip-inputs")
+    displayUserTrips(destinations, trips);
   } else {
     myTripsButton.setAttribute("disabled", true)
-    myTripsButton.classList.toggle("selected-button")
+    // myTripsButton.classList.toggle("selected-button")
     tripInputs.classList.add("hidden");
     tripInputs.classList.remove("trip-inputs");
+    displayUserTrips(destinations, trips);
+  }
+}
+
+const displayUserTrips = (destinations, trips) => {
     userTrips.innerHTML = ""
     if (trips.length) {
-      for (var i = 0; i < trips.length; i++) {
+      for (let i = 0; i < trips.length; i++) {
         const dates = trips[i].determineDateRange();
         const price = destinations[i].calculateTripCost(trips[i])
         userTrips.innerHTML += `
@@ -50,12 +59,12 @@ export const addUserTrips = (destinations, trips) => {
           <p>Status: ${trips[i].status}</p>
         </article>
         `
-    }
+      }
     } else {
       userTrips.innerHTML = `<p class="trip-type">Uh-oh, no trips of yours fit that criteria</p>`
     }
   }
-}
+
 
 export const showUserTripInputs = () => {
   myTripsButton.toggleAttribute("disabled");
@@ -76,6 +85,7 @@ export const setTripInputs = () => {
 }
 
 export const resetTripInputs = () => {
+  userTrips.innerHTML = ""
   dateInput.removeAttribute("readonly");
   durationInput.removeAttribute("readonly");
   travelersInput.removeAttribute("readonly");
@@ -96,7 +106,7 @@ export const showDestinationOpts = destinations => {
       <p>Departure: ${dateInput.value}</p>
       <p>Days: ${durationInput.value}</p>
       <p>Wanderers: ${travelersInput.value}</p>
-      <p class="trip-price">Total Cost: $${priceWithFee}</p>
+      <p class="trip-price">Total Cost: $${priceWithFee.toFixed()}</p>
       <button class="book-trip-button" type="button">BOOK</button>
     </article>
     `

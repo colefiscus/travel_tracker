@@ -34,7 +34,7 @@ const allDestinationsOpts = [];
 window.onload = displayInitialPage;
 
 function displayInitialPage() {
-  const singleUser = apiCalls.getSingleUser(48);
+  const singleUser = apiCalls.getSingleUser(50);
   const allTrips = apiCalls.getAllTrips();
   const allDestinations = apiCalls.getAllDestinations();
   Promise.all([singleUser, allTrips, allDestinations])
@@ -43,9 +43,11 @@ function displayInitialPage() {
       createDestinationOptArray(orderedData[2]);
       createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations)
       loadInitialScreen(user, destinations, trips)
-      // console.log(orderedData[0])
-      // console.log(orderedData[1])
-      // console.log(orderedData[2])
+      console.log(orderedData[0])
+      console.log(orderedData[1])
+      console.log(orderedData[2])
+      console.log(destinations)
+      console.log(trips)
     })
     .catch(error => {
       window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.");
@@ -70,13 +72,19 @@ const createNewUser = userData => {
 }
 
 const createNewTrip = filteredTrip => {
-  const trip = new Trip(filteredTrip)
-  trips.push(trip)
+  const matchingTrip = trips.find(trip => trip.id === filteredTrip.id)
+  if (!matchingTrip) {
+    const trip = new Trip(filteredTrip)
+    trips.push(trip)
+  }
 }
 
 const createUserDestination = filteredDestination => {
-  const destination = new Destination(filteredDestination)
-  destinations.push(destination)
+  const matchedDestination = destinations.find(destination => destination.id === filteredDestination.id)
+  if (!matchedDestination) {
+    const destination = new Destination(filteredDestination)
+    destinations.push(destination)
+  }
 }
 
 const createDestinationOptArray = allDestinations => {
@@ -144,7 +152,6 @@ function displayNewTrips() {
 
 function bookNewTrip() {
   const onSuccess = () => {
-
     displayInitialPage()
   }
   const eventTarget = event.target

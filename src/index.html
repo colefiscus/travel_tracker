@@ -24,15 +24,6 @@
           <button class="trip-selection-buttons new-trip-button" type="button">BOOK NEW TRIP</button>
         </nav>
         <nav class="trip-selection">
-          <div class="trip-inputs">
-            <label for="start-date">Start Date:</label>
-            <input class="start-date-input" type="date" name="start-date" required>
-            <label for"number-of-travelers">How Many People?</label>
-            <input class="travelers-input" type="number" min="1" max="12" name="number-of-travelers" value="1" required>
-            <label for="duration">How Many Days?</label>
-            <input class="trip-duration" value="1" type="number" min="1" max="30" name="duration" required>
-            <button class="submit-button" type="button">Find Trips</button>
-          </div>
           <div class="trip-filter-section">
             <h1>FILTER TRIPS</h1>
             <div class="trip-type-buttons">
@@ -42,6 +33,15 @@
               <button class="future-trips trip-filter" type="button">FUTURE</button>
               <button class="pending-trips trip-filter" type="button">PENDING</button>
             </div>
+          </div>
+          <div class="trip-inputs">
+            <label for="start-date">Start Date:</label>
+            <input class="start-date-input" type="date" name="start-date" required>
+            <label for"number-of-travelers">How Many People?</label>
+            <input class="travelers-input" type="number" min="1" max="12" name="number-of-travelers" value="1" required>
+            <label for="duration">How Many Days?</label>
+            <input class="trip-duration" value="1" type="number" min="1" max="30" name="duration" required>
+            <button class="submit-button" type="button">Find Trips</button>
           </div>
         </nav>
       </section>
