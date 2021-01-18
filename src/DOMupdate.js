@@ -51,26 +51,30 @@ export const displayUserTrips = (destinations, trips) => {
     if (trips.length) {
       trips.forEach(trip => {
         destinations.forEach(destination => {
-          if (trip.destinationID === destination.id) {
-            const dates = trip.determineDateRange();
-            const price = destination.calculateTripCost(trip)
-            userTrips.innerHTML += `
-            <article class="trip trip-border" id="${trip.id}">
-              <img src="${destination.image}" alt="${destination.alt}">
-              <h2>${destination.destination}</h2>
-              <p>Dates: ${dates.startDate} - ${dates.endDate}</p>
-              <p>Number of Wanderers: ${trip.travelers}</p>
-              <p class="trip-price">Points Earned: ${price}</p>
-              <p>Status: ${trip.status}</p>
-            </article>
-            `
-          }
+          addTripCardsToPage(trip, destination)
         });
       });
     } else {
       userTrips.innerHTML = `<p class="trip-type">Uh-oh, no trips of yours fit that criteria</p>`;
     }
   }
+
+const addTripCardsToPage = (trip, destination) => {
+  if (trip.destinationID === destination.id) {
+    const dates = trip.determineDateRange();
+    const price = destination.calculateTripCost(trip)
+    userTrips.innerHTML += `
+    <article class="trip trip-border" id="${trip.id}">
+      <img src="${destination.image}" alt="${destination.alt}">
+      <h2>${destination.destination}</h2>
+      <p>Dates: ${dates.startDate} - ${dates.endDate}</p>
+      <p>Number of Wanderers: ${trip.travelers}</p>
+      <p class="trip-price">Points Earned: ${price}</p>
+      <p>Status: ${trip.status}</p>
+    </article>
+    `
+  }
+}
 
 
 export const showUserTripInputs = () => {

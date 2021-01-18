@@ -174,7 +174,7 @@ function bookNewTrip() {
   }
   const eventTarget = event.target
   if (eventTarget.classList.contains("book-trip-button")) {
-    const date = dateInput.value.split('-').join("/");
+    const date = dateInput.value.split("-").join("/");
     const options = {
       id: new Date().getTime(),
       userID: user.id,
