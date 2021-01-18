@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>WanderLove</title>
+    <title>Wander</title>
     <link href="https://fonts.googleapis.com/css2?family=Nixie+One&family=Raleway:wght@400;600;800&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
-      <h1>WanderLove</h1>
+      <h1>WANDER</h1>
       <div class="login-corner">
-        <h2 class="user-account">Tommy's Account</h2>
-        <button type="button" class="login-button" name="return-to-login">Return to Login</button>
+        <h2 class="user-account"></h2>
+        <button type="button" class="login-button" name="return-to-login">SIGN OUT</button>
       </div>
     </header>
     <main>
-      <section class="user-summary">
-        <p>Nice job! This year you've earned 4520 points!</p>
-        <p>Your Rank: Explorer</p>
-        <p>Next Rank: 454 points</p>
-      </section>
+      <section class="user-summary"></section>
       <section class="navigation">
-        <nav class="trip-selection">
-          <button class="my-trips-button" type="button">MY TRIPS</button>
-          <button class"new-trips-button" type="button">BOOK TRIPS</button>
+        <nav class="trip-selection-buttons">
+          <button class="trip-selection-buttons my-trips-button" type="button">MY TRIPS</button>
+          <button class="trip-selection-buttons new-trip-button" type="button">BOOK NEW TRIP</button>
         </nav>
-        <nav class="trip-type">
-          <h1>FILTER TRIPS</h1>
-          <div class="trip-type-buttons">
-            <button class="all-trips" type="button" name="button">ALL</button>
-            <button class="past-trips" type="button">PAST</button>
-            <button class="present-trips" type="button">PRESENT</button>
-            <button class="future-trips" type="button">FUTURE</button>
-            <button class="pending-trips" type="button">PENDING</button>
+        <nav class="trip-selection">
+          <div class="trip-filter-section">
+            <h1>FILTER TRIPS</h1>
+            <div class="trip-type-buttons">
+              <button class="all-trips trip-filter" type="button" name="button">ALL</button>
+              <button class="past-trips trip-filter" type="button">PAST</button>
+              <button class="present-trips trip-filter" type="button">PRESENT</button>
+              <button class="future-trips trip-filter" type="button">FUTURE</button>
+              <button class="pending-trips trip-filter" type="button">PENDING</button>
+            </div>
+          </div>
+          <div class="trip-inputs">
+            <label for="start-date">Departure Date:</label>
+            <input class="start-date-input" type="date" name="start-date" required>
+            <label for"number-of-travelers">How Many People?</label>
+            <input class="travelers-input" type="number" min="1" max="12" name="number-of-travelers" value="1" required>
+            <label for="duration">How Many Days?</label>
+            <input class="trip-duration" value="1" type="number" min="1" max="30" name="duration" required>
+            <button class="find-trips-button" type="button">Find Trips</button>
           </div>
         </nav>
       </section>
