@@ -34,12 +34,15 @@ header {
 // ------------------------ BUTTONS ------------------------
 
 .login-button {
-  width: 30%;
+  font-family: "Raleway";
+  font-size: large;
+  width: auto;
   height: 35%;
   background-color: #004266;
   color: #ffffff;
-  border-radius: 10px;
+  border-radius: 30px/60px;
   margin-left: 20px;
+  padding: 2%;
 }
 
 .trip-type-buttons > button {
@@ -101,7 +104,8 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 5%;
+  margin-bottom: 3%;
+  margin-top: 5%;
   padding: 5%;
 }
 
@@ -119,12 +123,19 @@ header {
 .trip-selection-buttons {
   display: flex;
   justify-content: space-evenly;
+  margin: 1%;
 }
 
 .trip-filter-section {
+  font-size: large;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2%;
+}
+
+.filter-label {
+  margin: 1%;
 }
 
 .trip-inputs {
@@ -163,8 +174,8 @@ header {
 // A60067
 
 img {
-  height: 100px;
-  width: 100px;
+  height: auto;
+  width: 37%;
 }
 
 footer {
