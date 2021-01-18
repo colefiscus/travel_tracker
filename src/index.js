@@ -2,12 +2,10 @@ import "./css/base.scss";
 
 import { User } from "./User.js";
 import { Trip } from "./Trip.js";
-import { Destination } from "./Destination.js"
+import { Destination } from "./Destination.js";
 
 import * as apiCalls from "./util.js";
 import * as domUpdates from "./DOMupdate.js";
-
-
 
 const dateInput = document.querySelector(".start-date-input");
 const travelersInput = document.querySelector(".travelers-input");
@@ -16,15 +14,16 @@ const durationInput = document.querySelector(".trip-duration");
 const filterTripButtons = document.querySelectorAll(".trip-filter");
 const myTripsButton = document.querySelector(".my-trips-button");
 const bookTripButton = document.querySelector(".new-trip-button");
-const tripInputs = document.querySelector(".trip-inputs")
-const newDestinations = document.querySelector(".user-trips")
+const findTrips = document.querySelector(".trip-inputs");
+const newDestinations = document.querySelector(".user-trips");
+
 filterTripButtons.forEach(button => addEventListener("click", filterTrips));
-myTripsButton.addEventListener("click", () => {
-  domUpdates.addUserTrips(destinations, trips)
-});
 bookTripButton.addEventListener("click", domUpdates.showUserTripInputs);
-tripInputs.addEventListener("click", displayNewTrips);
+findTrips.addEventListener("click", displayNewTrips);
 newDestinations.addEventListener("click", bookNewTrip);
+myTripsButton.addEventListener("click", () => {
+  domUpdates.changeDisplay(destinations, trips);
+});
 
 let user;
 const trips = [];
@@ -41,13 +40,8 @@ function displayInitialPage() {
     .then(orderedData => {
       createNewUser(orderedData[0]);
       createDestinationOptArray(orderedData[2]);
-      createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations)
-      loadInitialScreen(user, destinations, trips)
-      console.log(orderedData[0])
-      console.log(orderedData[1])
-      console.log(orderedData[2])
-      console.log(destinations)
-      console.log(trips)
+      createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
+      loadInitialScreen(user, destinations, trips);
     })
     .catch(error => {
       window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.");
@@ -57,13 +51,13 @@ function displayInitialPage() {
 
 const matchDestinationsToTrips = (destinations, trips) => {
   return destinations.filter(destination => {
-    return trips.find(trip => trip.destinationID == destination.id)
-  })
+    return trips.find(trip => trip.destinationID == destination.id);
+  });
 }
 
 const loadInitialScreen = (user, destinations, trips) => {
   domUpdates.changeUserName(user);
-  domUpdates.addUserTrips(destinations, trips);
+  domUpdates.changeDisplay(destinations, trips);
   domUpdates.changeUserSummary(user, destinations, trips)
 }
 
@@ -107,9 +101,9 @@ function filterTrips() {
   if (event.target.classList.contains("pending-trips")) {
     const pendingTrips = trips.filter(trip => trip.status === "pending");
     const matchedDestinations = matchDestinationsToTrips(destinations, pendingTrips)
-    domUpdates.addUserTrips(matchedDestinations, pendingTrips);
+    domUpdates.changeDisplay(matchedDestinations, pendingTrips);
   } else if (event.target.classList.contains("all-trips")) {
-    domUpdates.addUserTrips(destinations, trips);
+    domUpdates.changeDisplay(destinations, trips);
   } else if (event.target.classList.contains("past-trips")) {
     const pastTrips = trips.filter(trip => {
       const tripDate = new Date(trip.date)
@@ -118,7 +112,7 @@ function filterTrips() {
       return today > tripDate
     })
     const matchedDestinations = matchDestinationsToTrips(destinations, pastTrips)
-    domUpdates.addUserTrips(matchedDestinations, pastTrips)
+    domUpdates.changeDisplay(matchedDestinations, pastTrips)
   } else if (event.target.classList.contains("future-trips")) {
     const futureTrips = trips.filter(trip => {
       const tripDate = new Date(trip.date)
@@ -126,7 +120,7 @@ function filterTrips() {
       return today < tripDate
     })
     const matchedDestinations = matchDestinationsToTrips(destinations, futureTrips)
-    domUpdates.addUserTrips(matchedDestinations, futureTrips)
+    domUpdates.changeDisplay(matchedDestinations, futureTrips)
   }
   else if (event.target.classList.contains("present-trips")) {
     const presentTrips = trips.filter(trip => {
@@ -137,15 +131,15 @@ function filterTrips() {
       return (today > tripDate && today < endDate)
     })
     const matchedDestinations = matchDestinationsToTrips(destinations, presentTrips)
-    domUpdates.addUserTrips(matchedDestinations, presentTrips)
+    domUpdates.changeDisplay(matchedDestinations, presentTrips)
   }
 }
 
 function displayNewTrips() {
-  if (event.target.classList.contains("submit-button") && event.target.innerText === "Find Trips") {
+  if (event.target.classList.contains("find-trips-button") && event.target.innerText === "Find Trips") {
     domUpdates.setTripInputs()
     domUpdates.showDestinationOpts(allDestinationsOpts)
-  } else if (event.target.classList.contains("submit-button") && event.target.innerText === "RESET") {
+  } else if (event.target.classList.contains("find-trips-button") && event.target.innerText === "RESET") {
     domUpdates.resetTripInputs()
   }
 }

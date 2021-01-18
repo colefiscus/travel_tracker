@@ -8,7 +8,7 @@ const tripInputs = document.querySelector(".trip-inputs");
 const dateInput = document.querySelector(".start-date-input");
 const travelersInput = document.querySelector(".travelers-input");
 const durationInput = document.querySelector(".trip-duration");
-const submitButton = document.querySelector(".submit-button");
+const submitButton = document.querySelector(".find-trips-button");
 
 export const changeUserName = user => {
   userName.innerText = user.name;
@@ -18,13 +18,13 @@ export const changeUserSummary = (user, destinations, trips) => {
   const points = user.calculateTotalCost(destinations, trips)
   const rank = user.determineRank(points)
   userSummary.innerHTML = `
-  <p>Nice job! You've earned ${points} points this year!</p>
-  <p>Your Rank: ${rank.rank}</p>
+  <p>Your point total: ${points}</p>
+  <p>Your Wander Rank: ${rank.rank}</p>
   <p>Next Rank: ${rank.pointsToNextRank} points</p>
   `
 }
 
-export const addUserTrips = (destinations, trips) => {
+export const changeDisplay = (destinations, trips) => {
   resetTripInputs();
   if (tripSelection.classList.contains("hidden")) {
     newTripButton.toggleAttribute("disabled");
@@ -36,7 +36,6 @@ export const addUserTrips = (destinations, trips) => {
     displayUserTrips(destinations, trips);
   } else {
     myTripsButton.setAttribute("disabled", true)
-    // myTripsButton.classList.toggle("selected-button")
     tripInputs.classList.add("hidden");
     tripInputs.classList.remove("trip-inputs");
     displayUserTrips(destinations, trips);
@@ -67,14 +66,16 @@ const displayUserTrips = (destinations, trips) => {
 
 
 export const showUserTripInputs = () => {
+  userTrips.innerHTML = "";
   myTripsButton.toggleAttribute("disabled");
   newTripButton.toggleAttribute("disabled");
   dateInput.valueAsDate = new Date();
+  const date = new Date();
+  dateInput.setAttribute("min", date.toISOString().slice(0, 10))
   tripSelection.classList.toggle("hidden");
   tripSelection.classList.toggle("trip-filter-section");
   tripInputs.classList.toggle("hidden");
   tripInputs.classList.toggle("trip-inputs")
-  userTrips.innerHTML = "";
 }
 
 export const setTripInputs = () => {

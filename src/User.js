@@ -36,12 +36,17 @@ export class User {
         rank = "Pathfinder";
         pointsToNextRank = 55000 - points;
         break;
-      case points >= 55000:
+      case points >= 55000 && points < 99999:
         rank = "Trailblazer";
         pointsToNextRank = 100000 - points;
         break;
+      case points >= 100000:
+        rank = "Wanderer";
+        pointsToNextRank = 0
+        break;
       default:
         rank = "Invalid Data";
+        pointsToNextRank = "Invalid Data"
         return;
     }
     return {rank: rank, pointsToNextRank: pointsToNextRank};
