@@ -33,7 +33,7 @@ const allDestinationsOpts = [];
 window.onload = displayInitialPage;
 
 function displayInitialPage() {
-  const singleUser = apiCalls.getSingleUser(50);
+  const singleUser = apiCalls.getSingleUser(24);
   const allTrips = apiCalls.getAllTrips();
   const allDestinations = apiCalls.getAllDestinations();
   Promise.all([singleUser, allTrips, allDestinations])
@@ -42,6 +42,9 @@ function displayInitialPage() {
       createDestinationOptArray(orderedData[2]);
       createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
       loadInitialScreen(user, destinations, trips);
+      console.log(orderedData[0])
+      console.log(orderedData[1])
+      console.log(orderedData[2])
     })
     .catch(error => {
       window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.");
@@ -99,40 +102,55 @@ const createMatchingTrips = (user, tripData, destinationData) => {
 
 function filterTrips() {
   if (event.target.classList.contains("pending-trips")) {
-    const pendingTrips = trips.filter(trip => trip.status === "pending");
-    const matchedDestinations = matchDestinationsToTrips(destinations, pendingTrips)
-    domUpdates.changeDisplay(matchedDestinations, pendingTrips);
+    filterPendingTrips();
   } else if (event.target.classList.contains("all-trips")) {
-    domUpdates.changeDisplay(destinations, trips);
+    domUpdates.displayUserTrips(destinations, trips);
   } else if (event.target.classList.contains("past-trips")) {
-    const pastTrips = trips.filter(trip => {
-      const tripDate = new Date(trip.date)
-      const today = new Date
-      today.setDate(today.getDate() - trip.duration)
-      return today > tripDate
-    })
-    const matchedDestinations = matchDestinationsToTrips(destinations, pastTrips)
-    domUpdates.changeDisplay(matchedDestinations, pastTrips)
+    filterPastTrips();
   } else if (event.target.classList.contains("future-trips")) {
-    const futureTrips = trips.filter(trip => {
-      const tripDate = new Date(trip.date)
-      const today = new Date
-      return today < tripDate
-    })
-    const matchedDestinations = matchDestinationsToTrips(destinations, futureTrips)
-    domUpdates.changeDisplay(matchedDestinations, futureTrips)
+    filterFutureTrips();
+  } else if (event.target.classList.contains("present-trips")) {
+    filterPresentTrips();
   }
-  else if (event.target.classList.contains("present-trips")) {
-    const presentTrips = trips.filter(trip => {
-      const tripDate = new Date(trip.date)
-      const today = new Date()
-      const endDate = new Date(trip.date)
-      endDate.setDate(endDate.getDate() + trip.duration)
-      return (today > tripDate && today < endDate)
-    })
-    const matchedDestinations = matchDestinationsToTrips(destinations, presentTrips)
-    domUpdates.changeDisplay(matchedDestinations, presentTrips)
-  }
+}
+
+const filterPendingTrips = () => {
+  const pendingTrips = trips.filter(trip => trip.status === "pending");
+  const matchedDestinations = matchDestinationsToTrips(destinations, pendingTrips)
+  domUpdates.displayUserTrips(matchedDestinations, pendingTrips);
+}
+
+const filterPastTrips = () => {
+  const pastTrips = trips.filter(trip => {
+    const tripDate = new Date(trip.date)
+    const today = new Date
+    today.setDate(today.getDate() - trip.duration)
+    return today > tripDate
+  })
+  const matchedDestinations = matchDestinationsToTrips(destinations, pastTrips)
+  domUpdates.displayUserTrips(matchedDestinations, pastTrips)
+}
+
+const filterPresentTrips = () => {
+  const presentTrips = trips.filter(trip => {
+    const tripDate = new Date(trip.date)
+    const today = new Date()
+    const endDate = new Date(trip.date)
+    endDate.setDate(endDate.getDate() + trip.duration)
+    return (today > tripDate && today < endDate)
+  })
+  const matchedDestinations = matchDestinationsToTrips(destinations, presentTrips)
+  domUpdates.displayUserTrips(matchedDestinations, presentTrips)
+}
+
+const filterFutureTrips = () => {
+  const futureTrips = trips.filter(trip => {
+    const tripDate = new Date(trip.date)
+    const today = new Date
+    return today < tripDate
+  })
+  const matchedDestinations = matchDestinationsToTrips(destinations, futureTrips)
+  domUpdates.displayUserTrips(matchedDestinations, futureTrips)
 }
 
 function displayNewTrips() {

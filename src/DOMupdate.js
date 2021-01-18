@@ -42,7 +42,7 @@ export const changeDisplay = (destinations, trips) => {
   }
 }
 
-const displayUserTrips = (destinations, trips) => {
+export const displayUserTrips = (destinations, trips) => {
     userTrips.innerHTML = ""
     if (trips.length) {
       for (let i = 0; i < trips.length; i++) {
