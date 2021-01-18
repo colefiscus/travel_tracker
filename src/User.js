@@ -24,19 +24,19 @@ export class User {
         rank = "Explorer";
         pointsToNextRank = 10000 - points;
         break;
-      case points >= 10000 && points < 24999:
+      case points >= 10000 && points < 29999:
         rank = "Pioneer";
-        pointsToNextRank = 25000 - points;
+        pointsToNextRank = 30000 - points;
         break;
-      case points >= 25000 && points < 39999:
+      case points >= 30000 && points < 49999:
         rank = "Adventurer";
-        pointsToNextRank = 40000 - points;
+        pointsToNextRank = 50000 - points;
         break;
-      case points >= 40000 && points < 54999:
+      case points >= 50000 && points < 74999:
         rank = "Pathfinder";
-        pointsToNextRank = 55000 - points;
+        pointsToNextRank = 75000 - points;
         break;
-      case points >= 55000 && points < 99999:
+      case points >= 75000 && points < 99999:
         rank = "Trailblazer";
         pointsToNextRank = 100000 - points;
         break;

@@ -19,9 +19,13 @@ export const changeUserSummary = (user, destinations, trips) => {
   const rank = user.determineRank(points)
   userSummary.innerHTML = `
   <p>Your point total: ${points}</p>
-  <p>Your Wander Rank: ${rank.rank}</p>
-  <p>Next Rank: ${rank.pointsToNextRank} points</p>
-  `
+  <p>Your Rank: ${rank.rank}</p>
+  `;
+  if (rank.pointsToNextRank > 0) {
+    userSummary.insertAdjacentHTML("beforeend", `<p>Next Rank: ${rank.pointsToNextRank} points</p>`)
+  } else {
+    userSummary.insertAdjacentHTML("beforeend", `<p>You have reached the maximum rank! You are a true Wanderer.</p>`)
+  }
 }
 
 export const changeDisplay = (destinations, trips) => {
@@ -45,22 +49,26 @@ export const changeDisplay = (destinations, trips) => {
 export const displayUserTrips = (destinations, trips) => {
     userTrips.innerHTML = ""
     if (trips.length) {
-      for (let i = 0; i < trips.length; i++) {
-        const dates = trips[i].determineDateRange();
-        const price = destinations[i].calculateTripCost(trips[i])
-        userTrips.innerHTML += `
-        <article class="trip trip-border" id="${trips[i].id}">
-          <img src="${destinations[i].image}" alt="${destinations[i].alt}">
-          <h2>${destinations[i].destination}</h2>
-          <p>Dates: ${dates.startDate} - ${dates.endDate}</p>
-          <p>Number of Wanderers: ${trips[i].travelers}</p>
-          <p class="trip-price">Points Earned: ${price}</p>
-          <p>Status: ${trips[i].status}</p>
-        </article>
-        `
-      }
+      trips.forEach(trip => {
+        destinations.forEach(destination => {
+          if (trip.destinationID === destination.id) {
+            const dates = trip.determineDateRange();
+            const price = destination.calculateTripCost(trip)
+            userTrips.innerHTML += `
+            <article class="trip trip-border" id="${trip.id}">
+              <img src="${destination.image}" alt="${destination.alt}">
+              <h2>${destination.destination}</h2>
+              <p>Dates: ${dates.startDate} - ${dates.endDate}</p>
+              <p>Number of Wanderers: ${trip.travelers}</p>
+              <p class="trip-price">Points Earned: ${price}</p>
+              <p>Status: ${trip.status}</p>
+            </article>
+            `
+          }
+        });
+      });
     } else {
-      userTrips.innerHTML = `<p class="trip-type">Uh-oh, no trips of yours fit that criteria</p>`
+      userTrips.innerHTML = `<p class="trip-type">Uh-oh, no trips of yours fit that criteria</p>`;
     }
   }
 
@@ -70,8 +78,7 @@ export const showUserTripInputs = () => {
   myTripsButton.toggleAttribute("disabled");
   newTripButton.toggleAttribute("disabled");
   dateInput.valueAsDate = new Date();
-  const date = new Date();
-  dateInput.setAttribute("min", date.toISOString().slice(0, 10))
+  dateInput.setAttribute("min", new Date().toISOString().slice(0, 10));
   tripSelection.classList.toggle("hidden");
   tripSelection.classList.toggle("trip-filter-section");
   tripInputs.classList.toggle("hidden");
@@ -86,7 +93,7 @@ export const setTripInputs = () => {
 }
 
 export const resetTripInputs = () => {
-  userTrips.innerHTML = ""
+  userTrips.innerHTML = "";
   dateInput.removeAttribute("readonly");
   durationInput.removeAttribute("readonly");
   travelersInput.removeAttribute("readonly");
@@ -98,7 +105,7 @@ export const resetTripInputs = () => {
 
 export const showDestinationOpts = destinations => {
   destinations.forEach(destination => {
-    const initialPrice = destination.estLodgingCostPerDay * durationInput.value + destination.estFlightCostPerPers * travelersInput.value;
+    const initialPrice = (destination.estLodgingCostPerDay * durationInput.value * travelersInput.value) + (destination.estFlightCostPerPers * travelersInput.value);
     const priceWithFee = initialPrice + (initialPrice * 0.1);
     userTrips.innerHTML += `
     <article class="destination trip-border" id="${destination.id}">
@@ -106,10 +113,10 @@ export const showDestinationOpts = destinations => {
       <h2>${destination.destination}</h2>
       <p>Departure: ${dateInput.value}</p>
       <p>Days: ${durationInput.value}</p>
-      <p>Wanderers: ${travelersInput.value}</p>
+      <p>Number of Wanderers: ${travelersInput.value}</p>
       <p class="trip-price">Total Cost: $${priceWithFee.toFixed()}</p>
       <button class="book-trip-button" type="button">BOOK</button>
     </article>
     `
-  })
+  });
 }
