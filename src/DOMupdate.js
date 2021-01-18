@@ -18,13 +18,36 @@ export const changeUserSummary = (user, destinations, trips) => {
   const points = user.calculateTotalCost(destinations, trips)
   const rank = user.determineRank(points)
   userSummary.innerHTML = `
-  <p>Your point total: ${points}</p>
-  <p>Your Rank: ${rank.rank}</p>
+    <div class="user-info">
+      <p class="user-rank-and-points">${points}</p>
+      <hr>
+      <p><b>Your Point Total</b></p>
+    </div>
+    <div class="user-info">
+      <p class="user-rank-and-points">${rank.rank}</p>
+      <hr>
+      <p><b>Your Rank</b></p>
+    </div>
   `;
+  addPointsToNextRank(rank);
+}
+
+const addPointsToNextRank = rank => {
   if (rank.pointsToNextRank > 0) {
-    userSummary.insertAdjacentHTML("beforeend", `<p>Next Rank: ${rank.pointsToNextRank} points</p>`)
+    userSummary.insertAdjacentHTML("beforeend", `
+    <div class="user-info">
+      <p class="user-rank-and-points">${rank.pointsToNextRank}</p>
+      <hr>
+      <p><b>Points to Next Rank</b></p>
+    </div
+    `);
   } else {
-    userSummary.insertAdjacentHTML("beforeend", `<p>You have reached the maximum rank! You are a true Wanderer.</p>`)
+    userSummary.insertAdjacentHTML("beforeend", `
+    <div class="user-info">
+      <p class="user-rank-and-points">Max Rank</p>
+      <hr>
+      <p><b>Points to Next Rank</b></p>
+    </div`);
   }
 }
 

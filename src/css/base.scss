@@ -98,15 +98,31 @@ header {
 }
 
 .user-summary {
-  border-top: 2px dotted #004266;
-  border-bottom: 2px dotted #004266;
-  width: 75%;
+  font-family: "Raleway";
+  border-bottom: 8px double #004266;
+  width: 80%;
   display: flex;
   justify-content: space-around;
+  text-align: center;
   align-items: center;
   margin-bottom: 3%;
-  margin-top: 5%;
-  padding: 5%;
+  padding: 3%;
+}
+
+hr {
+  width: 100%;
+  border: 1px solid #F6AE2D;
+}
+
+.user-info {
+  width: 30%;
+}
+
+.user-rank-and-points {
+  width: auto;
+  font-family: "Nixie One";
+  font-size: xx-large;
+  margin: 10%;
 }
 
 .navigation {
@@ -168,9 +184,9 @@ header {
 }
 
 .trip-border {
-  border-image-source: linear-gradient(to left, #F5F5F5, #617B94, #F5F5F5);
+  border-image-source: linear-gradient(to left, #F6AE2D, #617B94, #F6AE2D);
 }
-
+// 617B94
 // A60067
 
 img {
