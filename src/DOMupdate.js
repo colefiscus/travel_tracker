@@ -76,7 +76,6 @@ const addTripCardsToPage = (trip, destination) => {
   }
 }
 
-
 export const showUserTripInputs = () => {
   userTrips.innerHTML = "";
   myTripsButton.toggleAttribute("disabled");

@@ -1,11 +1,11 @@
 html,
 body {
   margin: 0;
-  height: auto;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   font-family: 'Nixie One';
   background-color: #EBEBEB;
@@ -43,19 +43,25 @@ header {
 }
 
 .trip-type-buttons > button {
+  font-family: "Raleway";
+  font-size: medium;
   width: 15%;
   height: 100%;
-  background-color: #D8F3FD;
-  color: #000000;
-  border-radius: 30px/60px;
+  background-color: #004266;
+  color: #FFFFFF;
 }
 
+// D8F3FD
+
 .trip-selection-buttons > button {
-  width: 25%;
+  font-family: "Nixie One";
+  font-size: x-large;
+  width: auto;
   height: 100%;
   background-color: #004266;
   color: #ffffff;
-  border-radius: 20px;
+  border-radius: 30px/60px;
+  padding: 2%;
 }
 
 .selected-button {
@@ -76,25 +82,31 @@ header {
 
 // ------------------------ USER SUMMARY ------------------------
 
-main {
+.main {
   height: auto;
-  min-height: 89vh;
   width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   border-left: 12px double #89DAFA;
   border-right: 12px double #EFD1DC;
   background-color: #F5F5F5
 }
 
 .user-summary {
+  border-top: 2px dotted #004266;
+  border-bottom: 2px dotted #004266;
+  width: 75%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  margin: 5%;
+  padding: 5%;
 }
 
 .navigation {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -106,7 +118,7 @@ main {
 
 .trip-selection-buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .trip-filter-section {
@@ -145,8 +157,10 @@ main {
 }
 
 .trip-border {
-  border-image-source: linear-gradient(to left, #EFD1DC, #E0C867, #89DAFA);
+  border-image-source: linear-gradient(to left, #F5F5F5, #617B94, #F5F5F5);
 }
+
+// A60067
 
 img {
   height: 100px;
