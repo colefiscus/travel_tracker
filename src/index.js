@@ -21,18 +21,18 @@ bookTripButton.addEventListener("click", domUpdates.showUserTripInputs);
 findTrips.addEventListener("click", displayNewTrips);
 newDestinations.addEventListener("click", bookNewTrip);
 myTripsButton.addEventListener("click", () => {
-  domUpdates.changeDisplay(destinations, trips);
+  domUpdates.changeDisplay(userDestinations, trips);
 });
 
 let user;
 const trips = [];
-const destinations = [];
+const userDestinations = [];
 const allDestinationsOpts = [];
 
 window.onload = displayInitialPage;
 
 function displayInitialPage() {
-  const singleUser = apiCalls.getSingleUser(3);
+  const singleUser = apiCalls.getSingleUser(1);
   const allTrips = apiCalls.getAllTrips();
   const allDestinations = apiCalls.getAllDestinations();
   Promise.all([singleUser, allTrips, allDestinations])
@@ -40,7 +40,7 @@ function displayInitialPage() {
     createNewUser(orderedData[0]);
     createDestinationOptArray(orderedData[2].destinations);
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
-    loadInitialScreen(user, destinations, trips);
+    loadInitialScreen(user, userDestinations, trips);
     // console.log(orderedData[0])
     // console.log(orderedData[1])
     // console.log(orderedData[2])
@@ -77,10 +77,10 @@ const createNewTrip = filteredTrip => {
 }
 
 const createMatchingDestination = filteredDestination => {
-  const matchedDestination = destinations.find(destination => destination.id === filteredDestination.id)
+  const matchedDestination = userDestinations.find(destination => destination.id === filteredDestination.id)
   if (!matchedDestination) {
     const destination = new Destination(filteredDestination)
-    destinations.push(destination)
+    userDestinations.push(destination)
   }
 }
 
@@ -97,7 +97,7 @@ const handleError = error => {
 
 function filterTrips() {
    if (event.target.classList.contains("all-trips")) {
-    domUpdates.displayUserTrips(destinations, trips);
+    domUpdates.displayUserTrips(userDestinations, trips);
   } else if (event.target.classList.contains("past-trips")) {
     filterPastTrips();
   } else if (event.target.classList.contains("future-trips")) {
@@ -122,7 +122,7 @@ const filterPastTrips = () => {
     today.setDate(today.getDate() - trip.duration);
     return today > tripDate && trip.status !== "pending";
   })
-  const matchedDestinations = matchDestinationsToTrips(destinations, pastTrips);
+  const matchedDestinations = matchDestinationsToTrips(userDestinations, pastTrips);
   domUpdates.displayUserTrips(matchedDestinations, pastTrips);
 }
 
@@ -134,7 +134,7 @@ const filterPresentTrips = () => {
     endDate.setDate(endDate.getDate() + trip.duration);
     return (today > tripDate && today < endDate && trip.status !== "pending");
   })
-  const matchedDestinations = matchDestinationsToTrips(destinations, presentTrips);
+  const matchedDestinations = matchDestinationsToTrips(userDestinations, presentTrips);
   domUpdates.displayUserTrips(matchedDestinations, presentTrips);
 }
 
@@ -144,13 +144,13 @@ const filterFutureTrips = () => {
     const today = new Date();
     return today < tripDate;
   })
-  const matchedDestinations = matchDestinationsToTrips(destinations, futureTrips);
+  const matchedDestinations = matchDestinationsToTrips(userDestinations, futureTrips);
   domUpdates.displayUserTrips(matchedDestinations, futureTrips);
 }
 
 const filterPendingTrips = () => {
   const pendingTrips = trips.filter(trip => trip.status === "pending");
-  const matchedDestinations = matchDestinationsToTrips(destinations, pendingTrips);
+  const matchedDestinations = matchDestinationsToTrips(userDestinations, pendingTrips);
   domUpdates.displayUserTrips(matchedDestinations, pendingTrips);
 }
 
@@ -190,7 +190,7 @@ function bookNewTrip() {
 }
 
 // COME BACK TO IF TIME??? -------------------------------
-// const sortTripsByDate = (trips, destinations) => {
+// const sortTripsByDate = (trips, userDestinations) => {
 //   const sortedTrips =  trips.sort((a, b) => {
 //     return (new Date(b.date)) - (new Date(a.date))
 //   })
