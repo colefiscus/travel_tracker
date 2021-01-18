@@ -16,7 +16,7 @@ export const getAllDestinations = () => {
     return destinations;
 }
 
-export const addNewTrip = options => {
+export const addNewTrip = (options, onSuccess) => {
   fetch("http://localhost:3001/api/v1/trips", {
     method: "POST",
     headers: {
@@ -25,16 +25,5 @@ export const addNewTrip = options => {
     body: JSON.stringify(options)
   })
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(json => onSuccess())
 }
-
-// {
-//   id: <number>,
-//   userID: <number>,
-//   destinationID: <number>,
-//   travelers: <number>,
-//   date: <string 'YYYY/MM/DD'>,
-//   duration: <number>,
-//   status: <string 'approved' or 'pending'>,
-//   suggestedActivities: <array of strings>
-// }

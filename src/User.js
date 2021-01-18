@@ -9,12 +9,12 @@ export class User {
     let totalPoints = 0;
     destinations.forEach(destination => {
       trips.forEach(trip => {
-        if (trip.destinationID === destination.id) {
+        if (trip.destinationID === destination.id && trip.status === "approved") {
           totalPoints += destination.calculateTripCost(trip)
         }
       })
     })
-    return totalPoints.toFixed();
+    return totalPoints;
   }
 
   determineRank(points) {

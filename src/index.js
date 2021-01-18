@@ -7,9 +7,7 @@ import { Destination } from "./Destination.js"
 import * as apiCalls from "./util.js";
 import * as domUpdates from "./DOMupdate.js";
 
-const singleUser = apiCalls.getSingleUser(36);
-const allTrips = apiCalls.getAllTrips();
-const allDestinations = apiCalls.getAllDestinations();
+
 
 const dateInput = document.querySelector(".start-date-input");
 const travelersInput = document.querySelector(".travelers-input");
@@ -33,20 +31,27 @@ const trips = [];
 const destinations = [];
 const allDestinationsOpts = [];
 
-Promise.all([singleUser, allTrips, allDestinations])
-  .then(orderedData => {
-    createNewUser(orderedData[0]);
-    createDestinationOptArray(orderedData[2]);
-    createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations)
-    loadInitialScreen(orderedData[0], user, destinations, trips)
-    // console.log(orderedData[0])
-    // console.log(orderedData[1])
-    // console.log(orderedData[2])
-  })
-  .catch(error => {
-    window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.");
-    console.log(error);
-  })
+window.onload = displayInitialPage;
+
+function displayInitialPage() {
+  const singleUser = apiCalls.getSingleUser(48);
+  const allTrips = apiCalls.getAllTrips();
+  const allDestinations = apiCalls.getAllDestinations();
+  Promise.all([singleUser, allTrips, allDestinations])
+    .then(orderedData => {
+      createNewUser(orderedData[0]);
+      createDestinationOptArray(orderedData[2]);
+      createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations)
+      loadInitialScreen(user, destinations, trips)
+      // console.log(orderedData[0])
+      // console.log(orderedData[1])
+      // console.log(orderedData[2])
+    })
+    .catch(error => {
+      window.alert("Oh no! Our servers are down right now! If you try back later they'll probably be up.");
+      console.log(error);
+    })
+  }
 
 const matchDestinationsToTrips = (destinations, trips) => {
   return destinations.filter(destination => {
@@ -54,8 +59,8 @@ const matchDestinationsToTrips = (destinations, trips) => {
   })
 }
 
-const loadInitialScreen = (data, user, destinations, trips) => {
-  domUpdates.changeUserName(data);
+const loadInitialScreen = (user, destinations, trips) => {
+  domUpdates.changeUserName(user);
   domUpdates.addUserTrips(destinations, trips);
   domUpdates.changeUserSummary(user, destinations, trips)
 }
@@ -138,19 +143,24 @@ function displayNewTrips() {
 }
 
 function bookNewTrip() {
+  const onSuccess = () => {
+
+    displayInitialPage()
+  }
   const eventTarget = event.target
   if (eventTarget.classList.contains("book-trip-button")) {
+    const date = dateInput.value.split('-').join("/")
     const options = {
       id: new Date().getTime(),
       userID: user.id,
-      destinationID: eventTarget.parentElement.id,
-      travelers: travelersInput.value,
-      date: dateInput.value,
-      duration: durationInput.value,
-      status: "Pending",
+      destinationID: parseInt(eventTarget.parentElement.id),
+      travelers: parseInt(travelersInput.value),
+      date: date,
+      duration: parseInt(durationInput.value),
+      status: "pending",
       suggestedActivities: []
     }
-    apiCalls.addNewTrip(options)
+    apiCalls.addNewTrip(options, onSuccess)
   }
 }
 

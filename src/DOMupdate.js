@@ -30,29 +30,30 @@ export const addUserTrips = (destinations, trips) => {
     newTripButton.toggleAttribute("disabled")
     tripSelection.classList.toggle("hidden");
     tripSelection.classList.toggle("trip-filter-section")
-  }
-  myTripsButton.setAttribute("disabled", true)
-  myTripsButton.classList.toggle("selected-button")
-  tripInputs.classList.add("hidden");
-  tripInputs.classList.remove("trip-inputs");
-  userTrips.innerHTML = ""
-  if (trips.length) {
-    for (var i = 0; i < trips.length; i++) {
-      const dates = trips[i].determineDateRange();
-      const price = destinations[i].calculateTripCost(trips[i])
-      userTrips.innerHTML += `
-      <article class="trip trip-border" id="${trips[i].id}">
-        <img src="${destinations[i].image}" alt="${destinations[i].alt}">
-        <h2>${destinations[i].destination}</h2>
-        <p>Dates: ${dates.startDate} - ${dates.endDate}</p>
-        <p>Number of Wanderers: ${trips[i].travelers}</p>
-        <p class="trip-price">Points Earned: ${price}</p>
-        <p>Status: ${trips[i].status}</p>
-      </article>
-      `
-    }
   } else {
-    userTrips.innerHTML = `<p class="trip-type">Uh-oh, no trips of yours fit that criteria</p>`
+    myTripsButton.setAttribute("disabled", true)
+    myTripsButton.classList.toggle("selected-button")
+    tripInputs.classList.add("hidden");
+    tripInputs.classList.remove("trip-inputs");
+    userTrips.innerHTML = ""
+    if (trips.length) {
+      for (var i = 0; i < trips.length; i++) {
+        const dates = trips[i].determineDateRange();
+        const price = destinations[i].calculateTripCost(trips[i])
+        userTrips.innerHTML += `
+        <article class="trip trip-border" id="${trips[i].id}">
+          <img src="${destinations[i].image}" alt="${destinations[i].alt}">
+          <h2>${destinations[i].destination}</h2>
+          <p>Dates: ${dates.startDate} - ${dates.endDate}</p>
+          <p>Number of Wanderers: ${trips[i].travelers}</p>
+          <p class="trip-price">Points Earned: ${price}</p>
+          <p>Status: ${trips[i].status}</p>
+        </article>
+        `
+    }
+    } else {
+      userTrips.innerHTML = `<p class="trip-type">Uh-oh, no trips of yours fit that criteria</p>`
+    }
   }
 }
 

@@ -13,6 +13,6 @@ export class Destination {
     const flightPrice = this.estFlightCostPerPers * info.travelers;
     const initialTotal = lodgingPrice + flightPrice;
     const finalPrice = initialTotal + (initialTotal * 0.1)
-    return finalPrice
+    return Number(finalPrice.toFixed());
   }
 }
