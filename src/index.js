@@ -9,6 +9,10 @@ import { Destination } from "./Destination.js";
 import * as apiCalls from "./util.js";
 import * as domUpdates from "./DOMupdate.js";
 
+const userNameLogin = document.querySelector(".username-login");
+const passwordLogin = document.querySelector(".password-login");
+const loginButton = document.querySelector(".login-button");
+const logoutButton = document.querySelector(".logout-button");
 const filterTripButtons = document.querySelectorAll(".trip-filter");
 const myTripsButton = document.querySelector(".my-trips-button");
 const bookTripButton = document.querySelector(".new-trip-button");
@@ -18,6 +22,9 @@ const dateInput = document.querySelector(".start-date-input");
 const travelersInput = document.querySelector(".travelers-input");
 const durationInput = document.querySelector(".trip-duration");
 
+loginButton.addEventListener("click", loginUser);
+userNameLogin.addEventListener("keydown", allowAnotherLoginTry);
+logoutButton.addEventListener("click", loginOrLogout)
 filterTripButtons.forEach(button => addEventListener("click", filterTrips));
 bookTripButton.addEventListener("click", domUpdates.showUserTripInputs);
 findTrips.addEventListener("click", displayNewTrips);
@@ -27,14 +34,34 @@ myTripsButton.addEventListener("click", () => {
 });
 
 let user;
-const trips = [];
-const userDestinations = [];
-const allDestinationsOpts = [];
+let trips = [];
+let userDestinations = [];
+let allDestinationsOpts = [];
 
-window.onload = displayInitialPage;
+function loginUser() {
+  const usernameSplit = userNameLogin.value.split("er");
+  const userNumber = usernameSplit[1];
+  if (userNameLogin.value.includes("traveler") && userNumber <= 50 && userNumber > 0 && passwordLogin.value === "travel2020") {
+    loginOrLogout();
+    displayInitialPage(userNumber);
+  } else {
+    domUpdates.alertUserOfLoginError();
+  }
+}
 
-function displayInitialPage() {
-  const singleUser = apiCalls.getSingleUser(5);
+function allowAnotherLoginTry() {
+  domUpdates.changeLoginButtonBack()
+}
+
+function loginOrLogout() {
+  trips = [];
+  userDestinations = [];
+  allDestinationsOpts = [];
+  domUpdates.changeScreensAfterLogin();
+}
+
+const displayInitialPage = (userNumber) => {
+  const singleUser = apiCalls.getSingleUser(userNumber);
   const allTrips = apiCalls.getAllTrips();
   const allDestinations = apiCalls.getAllDestinations();
   Promise.all([singleUser, allTrips, allDestinations])
@@ -43,9 +70,6 @@ function displayInitialPage() {
     createDestinationOptArray(orderedData[2].destinations);
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
     loadInitialScreen(user, userDestinations, trips);
-    // console.log(orderedData[0])
-    // console.log(orderedData[1])
-    // console.log(orderedData[2])
   })
   .catch(error => handleError(error));
 }
@@ -172,7 +196,7 @@ function displayNewTrips() {
 
 function bookNewTrip() {
   const onSuccess = () => {
-    displayInitialPage();
+    displayInitialPage(user.id);
   }
   const eventTarget = event.target
   if (eventTarget.classList.contains("book-trip-button")) {

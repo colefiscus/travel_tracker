@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Wander</title>
+    <title>Wandr</title>
+    <link rel="icon" href="./images/plane.png">
     <link href="https://fonts.googleapis.com/css2?family=Nixie+One&family=Raleway:wght@400;600;800&display=swap" rel="stylesheet">
   </head>
   <body class="body">
-    <header>
+    <header class="header hidden">
       <div class="wander-icons">
         <img class="plane-icon" src="./images/plane.png" alt="Wander Icon">
         <h1>WANDR</h1>
       </div>
       <div class="login-corner">
         <h2 class="user-account"></h2>
-        <button type="button" class="login-button" name="return-to-login">logout</button>
+        <button type="button" class="logout-button" name="return-to-login">logout</button>
       </div>
     </header>
-    <main class="main">
+    <main class="login-page">
+      <img class="login-icon" src="./images/plane.png" alt="Wander Icon">
+      <h1 class="login-title">WANDR</h1>
+      <form class="login-form-section" name="login-form-section">
+        <div class="login-form">
+          <label for="username">USERNAME:</label>
+          <input class="username-login" type="text" id="username" autofocus>
+        </div>
+        <div class="login-form">
+          <label for="password">PASSWORD:</label>
+          <input class="password-login" type="password" id="password">
+        </div>
+        <div class="login-form">
+          <button class="login-button" type="button" name="login-button">SUBMIT</button>
+        </div>
+      </form>
+    </main>
+    <main class="main-page hidden">
       <section class="user-summary"></section>
       <section class="navigation">
         <nav class="trip-selection-buttons">
@@ -54,11 +72,10 @@
       <section class="user-trips"></section>
       <section class="destination-section"></section>
     </main>
-    <footer>
+    <footer class="footer hidden">
       <p>Wandr®</p>
       <p>Contact Us: 213-645-8790</p>
-      <p>Send Us A Postcard!</p>
+      <p>Send Postcards!</p>
     </footer>
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
 </html>

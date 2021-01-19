@@ -1,3 +1,11 @@
+const loginPage = document.querySelector(".login-page");
+const mainPage = document.querySelector(".main-page");
+const header = document.querySelector(".header");
+const footer = document.querySelector(".footer");
+const loginFormSection = document.querySelector(".login-form-section")
+const loginButton = document.querySelector(".login-button");
+const userNameLogin = document.querySelector(".username-login");
+const passwordLogin = document.querySelector(".password-login");
 const userName = document.querySelector(".user-account");
 const userTrips = document.querySelector(".user-trips");
 const destinationCardSection = document.querySelector(".destination-section")
@@ -11,13 +19,35 @@ const travelersInput = document.querySelector(".travelers-input");
 const durationInput = document.querySelector(".trip-duration");
 const submitButton = document.querySelector(".find-trips-button");
 
+export const changeScreensAfterLogin = () => {
+  userNameLogin.value = "";
+  passwordLogin.value = "";
+  loginPage.classList.toggle("hidden");
+  mainPage.classList.toggle("hidden");
+  header.classList.toggle("hidden");
+  footer.classList.toggle("hidden");
+}
+
+export const changeLoginButtonBack = () => {
+  loginButton.innerText = "SUBMIT";
+  loginButton.removeAttribute("disabled")
+}
+
+export const alertUserOfLoginError = () => {
+  userNameLogin.value = "";
+  passwordLogin.value = "";
+  loginButton.innerText = "TRY AGAIN";
+  loginButton.setAttribute("disabled", true)
+}
+
 export const changeUserName = user => {
   userName.innerText = user.name;
 }
 
 export const changeUserSummary = (user, destinations, trips) => {
-  const points = user.calculateTotalCost(destinations, trips)
-  const rank = user.determineRank(points)
+  let points = user.calculateTotalCost(destinations, trips);
+  const rank = user.determineRank(points);
+  points = points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   userSummary.innerHTML = `
     <div class="user-info">
       <p class="user-rank-and-points">${points}</p>
@@ -35,9 +65,10 @@ export const changeUserSummary = (user, destinations, trips) => {
 
 const addPointsToNextRank = rank => {
   if (rank.pointsToNextRank > 0) {
+    const pointsToNextRank = rank.pointsToNextRank.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     userSummary.insertAdjacentHTML("beforeend", `
     <div class="user-info">
-      <p class="user-rank-and-points">${rank.pointsToNextRank}</p>
+      <p class="user-rank-and-points">${pointsToNextRank}</p>
       <hr>
       <p><b>Points to Next Rank</b></p>
     </div
@@ -87,7 +118,7 @@ export const displayUserTrips = (destinations, trips) => {
 const addTripCardsToPage = (trip, destination) => {
   if (trip.destinationID === destination.id) {
     const dates = trip.determineDateRange();
-    const price = destination.calculateTripCost(trip)
+    const price = destination.calculateTripCost(trip).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     userTrips.innerHTML += `
     <article class="trip trip-border" id="${trip.id}">
       <img src="${destination.image}" alt="${destination.alt}">
@@ -138,7 +169,13 @@ export const resetTripInputs = () => {
 export const showDestinationOpts = destinations => {
   destinations.forEach(destination => {
     const initialPrice = (destination.estLodgingCostPerDay * durationInput.value * travelersInput.value) + (destination.estFlightCostPerPers * travelersInput.value);
-    const priceWithFee = initialPrice + (initialPrice * 0.1);
+    const priceWithFee = (initialPrice + (initialPrice * 0.1)).toFixed();
+    const formattedPrice = priceWithFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    createDestinationCards(destination, formattedPrice);
+  });
+}
+
+const createDestinationCards = (destination, price) => {
     destinationCardSection.innerHTML += `
     <article class="destination" id="${destination.id}">
       <img class="destination-images" src="${destination.image}" alt="${destination.alt}">
@@ -148,11 +185,10 @@ export const showDestinationOpts = destinations => {
           <p>Departure: ${dateInput.value}</p>
           <p>Days: ${durationInput.value}</p>
           <p>Number of Wanderers: ${travelersInput.value}</p>
-          <p class="trip-price">Total Cost: $${priceWithFee.toFixed()}</p>
+          <p class="trip-price">Total Cost: $${price}</p>
         </div>
         <button class="book-trip-button" type="button">BOOK IT</button>
       </div>
     </article>
     `
-  });
-}
+  };
