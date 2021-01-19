@@ -74,11 +74,11 @@ export const displayUserTrips = (destinations, trips) => {
     if (trips.length) {
       trips.forEach(trip => {
         destinations.forEach(destination => {
-          addTripCardsToPage(trip, destination)
+          addTripCardsToPage(trip, destination);
         });
       });
     } else {
-      userTrips.innerHTML = `<p class="trip-type">Uh-oh, no trips of yours fit that criteria</p>`;
+      userTrips.innerHTML = `<p class="trip-border trip no-matching-trips">Uh-oh, no trips of yours fit that criteria</p>`;
     }
   }
 
@@ -89,11 +89,15 @@ const addTripCardsToPage = (trip, destination) => {
     userTrips.innerHTML += `
     <article class="trip trip-border" id="${trip.id}">
       <img src="${destination.image}" alt="${destination.alt}">
-      <h2>${destination.destination}</h2>
-      <p>Dates: ${dates.startDate} - ${dates.endDate}</p>
-      <p>Number of Wanderers: ${trip.travelers}</p>
-      <p class="trip-price">Points Earned: ${price}</p>
-      <p>Status: ${trip.status}</p>
+      <div class="trip-card-info">
+        <h2 class="destination-label">${destination.destination}</h2>
+        <div class="trip-card-details">
+          <p><b>Dates:</b> ${dates.startDate} - ${dates.endDate}</p>
+          <p><b>Number of Wanderers:</b> ${trip.travelers}</p>
+          <p class="trip-price"><b>Points Earned:</b> ${price}</p>
+          <p><b>Status:</b> ${trip.status}</p>
+        </div>
+      </div>
     </article>
     `
   }

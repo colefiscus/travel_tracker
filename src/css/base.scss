@@ -83,6 +83,17 @@ header {
   border-radius: 0 20px 20px 0;
 }
 
+.find-trips-button {
+  font-family: "Nixie One";
+  font-size: x-large;
+  width: auto;
+  height: 100%;
+  background-color: #004266;
+  color: #ffffff;
+  border-radius: 30px/60px;
+  padding: 2%;
+}
+
 // ------------------------ USER SUMMARY ------------------------
 
 .main {
@@ -159,6 +170,17 @@ hr {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 1%;
+}
+
+.input {
+  width: 100%;
+  font-size: x-large;
+}
+
+.input-option {
+  width: 25%;
+  margin: 1%;
 }
 
 .trip-type-buttons {
@@ -174,24 +196,45 @@ hr {
 }
 
 .trip {
+  font-family: "Raleway";
   width: 85%;
   display: flex;
-  // flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
+  // align-items: center;
   border: 5px solid black;
   border-image-slice: 1;
   margin: 3%;
 }
 
-.trip-border {
-  border-image-source: linear-gradient(to left, #F6AE2D, #617B94, #F6AE2D);
+.trip-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: large;
+  text-align: left;
 }
-// 617B94
-// A60067
+
+.destination-label {
+  font-family: "Nixie One";
+  // font-size: x-large;
+  margin: 1%;
+}
+
+.no-matching-trips {
+  width: 100%;
+  height: 250px;
+  font-family: "Nixie One";
+  font-size: x-large;
+  align-items: center;
+}
+
+.trip-border {
+  border-image-source: linear-gradient(to left, #F5F5F5, #F6AE2D, #617B94, #617B94, #F6AE2D, #F5F5F5);
+}
 
 img {
   height: auto;
-  width: 37%;
+  width: 45%;
 }
 
 footer {
