@@ -25,7 +25,7 @@ const durationInput = document.querySelector(".trip-duration");
 loginButton.addEventListener("click", loginUser);
 userNameLogin.addEventListener("keydown", allowAnotherLoginTry);
 logoutButton.addEventListener("click", loginOrLogout)
-filterTripButtons.forEach(button => addEventListener("click", filterTrips));
+filterTripButtons.forEach(button => button.addEventListener("click", filterTrips));
 bookTripButton.addEventListener("click", domUpdates.showUserTripInputs);
 findTrips.addEventListener("click", displayNewTrips);
 newDestinations.addEventListener("click", bookNewTrip);
@@ -50,7 +50,7 @@ function loginUser() {
 }
 
 function allowAnotherLoginTry() {
-  domUpdates.changeLoginButtonBack()
+  domUpdates.changeLoginButtonBack();
 }
 
 function loginOrLogout() {
@@ -65,20 +65,20 @@ const displayInitialPage = (userNumber) => {
   const allTrips = apiCalls.getAllTrips();
   const allDestinations = apiCalls.getAllDestinations();
   Promise.all([singleUser, allTrips, allDestinations])
-  .then(orderedData => {
-    createNewUser(orderedData[0]);
-    createDestinationOptArray(orderedData[2].destinations);
-    createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
-    loadInitialScreen(user, userDestinations, trips);
-  })
-  .catch(error => handleError(error));
+    .then(orderedData => {
+      createNewUser(orderedData[0]);
+      createAllDestinationOptions(orderedData[2].destinations);
+      createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
+      loadInitialScreen(user, userDestinations, trips);
+    })
+    .catch(error => handleError(error));
 }
 
 const createNewUser = userData => {
   user = new User(userData);
 }
 
-const createDestinationOptArray = allDestinations => {
+const createAllDestinationOptions = allDestinations => {
   allDestinations.forEach(destination => {
     const destinationOpt = new Destination(destination);
     allDestinationsOpts.push(destinationOpt);
@@ -88,7 +88,7 @@ const createDestinationOptArray = allDestinations => {
 const createMatchingTrips = (user, tripData, destinationData) => {
   const tripsByUser = tripData.filter(trip => trip.userID === user.id);
   const destinationsByUserTrips = tripsByUser.map(trip => {
-     return destinationData.find(destination => destination.id === trip.destinationID)
+    return destinationData.find(destination => destination.id === trip.destinationID)
   })
   tripsByUser.forEach(trip => createNewTrip(trip))
   destinationsByUserTrips.forEach(destination => createMatchingDestination(destination))
@@ -122,7 +122,7 @@ const handleError = error => {
 }
 
 function filterTrips() {
-   if (event.target.classList.contains("all-trips")) {
+  if (event.target.classList.contains("all-trips")) {
     domUpdates.displayUserTrips(userDestinations, trips);
   } else if (event.target.classList.contains("past-trips")) {
     filterPastTrips();
@@ -137,7 +137,7 @@ function filterTrips() {
 
 const matchDestinationsToTrips = (destinations, trips) => {
   return destinations.filter(destination => {
-    return trips.find(trip => trip.destinationID == destination.id);
+    return trips.find(trip => trip.destinationID === destination.id);
   });
 }
 
@@ -186,7 +186,7 @@ function displayNewTrips() {
       domUpdates.setTripInputs();
       domUpdates.showDestinationOpts(allDestinationsOpts);
     } else {
-      window.alert("Unfortunately, we at Wander can handle a maximum of 12 people and for no longer than 30 days. Please check your selections and thank you for using Wander!")
+      window.alert("Unfortunately, we at Wandr can handle a maximum of 12 people and for no longer than 30 days. Please check your selections and thank you for using Wandr!")
       domUpdates.resetTripInputs();
     }
   } else if (event.target.classList.contains("find-trips-button") && event.target.innerText === "RESET") {
@@ -214,10 +214,3 @@ function bookNewTrip() {
     apiCalls.addNewTrip(options, onSuccess);
   }
 }
-
-// COME BACK TO IF TIME??? -------------------------------
-// const sortTripsByDate = (trips, userDestinations) => {
-//   const sortedTrips =  trips.sort((a, b) => {
-//     return (new Date(b.date)) - (new Date(a.date))
-//   })
-// }
