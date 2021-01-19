@@ -142,6 +142,11 @@ export const showDestinationOpts = destinations => {
     const initialPrice = (destination.estLodgingCostPerDay * durationInput.value * travelersInput.value) + (destination.estFlightCostPerPers * travelersInput.value);
     const priceWithFee = (initialPrice + (initialPrice * 0.1)).toFixed();
     const formattedPrice = priceWithFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    createDestinationCards(destination, formattedPrice);
+  });
+}
+
+const createDestinationCards = (destination, price) => {
     destinationCardSection.innerHTML += `
     <article class="destination" id="${destination.id}">
       <img class="destination-images" src="${destination.image}" alt="${destination.alt}">
@@ -151,11 +156,10 @@ export const showDestinationOpts = destinations => {
           <p>Departure: ${dateInput.value}</p>
           <p>Days: ${durationInput.value}</p>
           <p>Number of Wanderers: ${travelersInput.value}</p>
-          <p class="trip-price">Total Cost: $${formattedPrice}</p>
+          <p class="trip-price">Total Cost: $${price}</p>
         </div>
         <button class="book-trip-button" type="button">BOOK IT</button>
       </div>
     </article>
     `
-  });
-}
+  };
