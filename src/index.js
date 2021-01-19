@@ -11,7 +11,7 @@ const filterTripButtons = document.querySelectorAll(".trip-filter");
 const myTripsButton = document.querySelector(".my-trips-button");
 const bookTripButton = document.querySelector(".new-trip-button");
 const findTrips = document.querySelector(".trip-inputs");
-const newDestinations = document.querySelector(".user-trips");
+const newDestinations = document.querySelector(".destination-section");
 const dateInput = document.querySelector(".start-date-input");
 const travelersInput = document.querySelector(".travelers-input");
 const durationInput = document.querySelector(".trip-duration");
@@ -32,7 +32,7 @@ const allDestinationsOpts = [];
 window.onload = displayInitialPage;
 
 function displayInitialPage() {
-  const singleUser = apiCalls.getSingleUser(1);
+  const singleUser = apiCalls.getSingleUser(5);
   const allTrips = apiCalls.getAllTrips();
   const allDestinations = apiCalls.getAllDestinations();
   Promise.all([singleUser, allTrips, allDestinations])
@@ -178,7 +178,7 @@ function bookNewTrip() {
     const options = {
       id: new Date().getTime(),
       userID: user.id,
-      destinationID: parseInt(eventTarget.parentElement.id),
+      destinationID: parseInt(eventTarget.parentElement.parentElement.id),
       travelers: parseInt(travelersInput.value),
       date: date,
       duration: parseInt(durationInput.value),

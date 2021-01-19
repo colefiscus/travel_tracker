@@ -1,5 +1,6 @@
 const userName = document.querySelector(".user-account");
 const userTrips = document.querySelector(".user-trips");
+const destinationCardSection = document.querySelector(".destination-section")
 const userSummary = document.querySelector(".user-summary");
 const myTripsButton = document.querySelector(".my-trips-button");
 const newTripButton = document.querySelector(".new-trip-button");
@@ -70,7 +71,8 @@ export const changeDisplay = (destinations, trips) => {
 }
 
 export const displayUserTrips = (destinations, trips) => {
-    userTrips.innerHTML = ""
+    destinationCardSection.innerHTML = "";
+    userTrips.innerHTML = "";
     if (trips.length) {
       trips.forEach(trip => {
         destinations.forEach(destination => {
@@ -123,7 +125,7 @@ export const setTripInputs = () => {
 }
 
 export const resetTripInputs = () => {
-  userTrips.innerHTML = "";
+  destinationCardSection.innerHTML = "";
   dateInput.removeAttribute("readonly");
   durationInput.removeAttribute("readonly");
   travelersInput.removeAttribute("readonly");
@@ -137,15 +139,19 @@ export const showDestinationOpts = destinations => {
   destinations.forEach(destination => {
     const initialPrice = (destination.estLodgingCostPerDay * durationInput.value * travelersInput.value) + (destination.estFlightCostPerPers * travelersInput.value);
     const priceWithFee = initialPrice + (initialPrice * 0.1);
-    userTrips.innerHTML += `
-    <article class="destination trip-border" id="${destination.id}">
-      <img src="${destination.image}" alt="${destination.alt}">
-      <h2>${destination.destination}</h2>
-      <p>Departure: ${dateInput.value}</p>
-      <p>Days: ${durationInput.value}</p>
-      <p>Number of Wanderers: ${travelersInput.value}</p>
-      <p class="trip-price">Total Cost: $${priceWithFee.toFixed()}</p>
-      <button class="book-trip-button" type="button">BOOK</button>
+    destinationCardSection.innerHTML += `
+    <article class="destination" id="${destination.id}">
+      <img class="destination-images" src="${destination.image}" alt="${destination.alt}">
+      <div class="destination-details">
+        <div>
+          <h2>${destination.destination}</h2>
+          <p>Departure: ${dateInput.value}</p>
+          <p>Days: ${durationInput.value}</p>
+          <p>Number of Wanderers: ${travelersInput.value}</p>
+          <p class="trip-price">Total Cost: $${priceWithFee.toFixed()}</p>
+        </div>
+        <button class="book-trip-button" type="button">BOOK IT</button>
+      </div>
     </article>
     `
   });
