@@ -6,6 +6,7 @@
   </head>
   <body class="body">
     <header>
+      <img src="" alt="Wander Icon">
       <h1>WANDER</h1>
       <div class="login-corner">
         <h2 class="user-account"></h2>
@@ -33,15 +34,15 @@
           <div class="trip-inputs">
             <div class="input-option">
               <label for="start-date">Departure Date:</label>
-              <input class="start-date-input input" type="date" name="start-date" required>
+              <input class="start-date-input input" type="date" id="start-date" required>
             </div>
             <div class="input-option">
-              <label for"number-of-travelers">How Many People?</label>
-              <input class="travelers-input input" type="number" min="1" max="12" name="number-of-travelers" value="1" required>
+              <label for="number-of-travelers">How Many People?</label>
+              <input class="travelers-input input" type="number" min="1" max="12" id="number-of-travelers" value="1" required>
             </div>
             <div class="input-option">
               <label for="duration">How Many Days?</label>
-              <input class="trip-duration input" value="1" type="number" min="1" max="30" name="duration" required>
+              <input class="trip-duration input" value="1" type="number" min="1" max="30" id="duration" required>
             </div>
             <button class="find-trips-button" type="button">Find Trips</button>
           </div>
