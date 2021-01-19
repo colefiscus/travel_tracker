@@ -186,7 +186,7 @@ function displayNewTrips() {
       domUpdates.setTripInputs();
       domUpdates.showDestinationOpts(allDestinationsOpts);
     } else {
-      window.alert("Unfortunately, we at Wander can handle a maximum of 12 people and for no longer than 30 days. Please check your selections and thank you for using Wander!")
+      window.alert("Unfortunately, we at Wandr can handle a maximum of 12 people and for no longer than 30 days. Please check your selections and thank you for using Wandr!")
       domUpdates.resetTripInputs();
     }
   } else if (event.target.classList.contains("find-trips-button") && event.target.innerText === "RESET") {
