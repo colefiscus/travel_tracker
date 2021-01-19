@@ -1,11 +1,11 @@
 html,
 body {
   margin: 0;
-  height: auto;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   font-family: 'Nixie One';
   background-color: #EBEBEB;
@@ -19,9 +19,21 @@ header {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: #89DAFA;
   border-bottom: 3px double #202931;
+}
+
+.wander-icons {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.plane-icon {
+  width: 4em;
+  height: 4em;
+  padding: 2%;
 }
 
 .login-corner {
@@ -29,33 +41,41 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-right: 20px;
 }
 
 // ------------------------ BUTTONS ------------------------
 
 .login-button {
-  width: 30%;
+  font-family: "Raleway";
+  font-size: large;
+  width: auto;
   height: 35%;
   background-color: #004266;
   color: #ffffff;
-  border-radius: 10px;
+  border-radius: 30px/60px;
   margin-left: 20px;
+  padding: 2%;
 }
 
 .trip-type-buttons > button {
+  font-family: "Raleway";
+  font-size: medium;
   width: 15%;
   height: 100%;
-  background-color: #D8F3FD;
-  color: #000000;
-  // border-radius: 30px/60px;
+  background-color: #004266;
+  color: #FFFFFF;
 }
 
 .trip-selection-buttons > button {
-  width: 25%;
+  font-family: "Nixie One";
+  font-size: x-large;
+  width: auto;
   height: 100%;
   background-color: #004266;
   color: #ffffff;
-  border-radius: 20px;
+  border-radius: 30px/60px;
+  padding: 2%;
 }
 
 .selected-button {
@@ -74,29 +94,70 @@ header {
   border-radius: 0 20px 20px 0;
 }
 
+.find-trips-button {
+  font-family: "Nixie One";
+  font-size: x-large;
+  width: auto;
+  height: 100%;
+  background-color: #004266;
+  color: #ffffff;
+  border-radius: 30px/60px;
+  margin: 2%;
+  padding: 2%;
+}
+
 // ------------------------ USER SUMMARY ------------------------
 
-main {
-  height: 100%;
+.main {
+  height: auto;
   width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   border-left: 12px double #89DAFA;
   border-right: 12px double #EFD1DC;
   background-color: #F5F5F5
 }
 
 .user-summary {
+  font-family: "Raleway";
+  border-bottom: 8px double #004266;
+  width: 80%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
   align-items: center;
+  margin-bottom: 3%;
+  padding: 3%;
+}
+
+hr {
+  width: 100%;
+  border: 1px solid #F6AE2D;
+}
+
+.user-info {
+  width: 30%;
+}
+
+.user-rank-and-points {
+  width: auto;
+  font-family: "Nixie One";
+  font-size: xx-large;
+  margin: 10%;
 }
 
 .navigation {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.postcard-icon {
+  width: 5em;
+  height: 5em;
 }
 
 .hidden {
@@ -105,13 +166,20 @@ main {
 
 .trip-selection-buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  margin: 1%;
 }
 
 .trip-filter-section {
+  font-size: large;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2%;
+}
+
+.filter-label {
+  margin: 1%;
 }
 
 .trip-inputs {
@@ -119,6 +187,62 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  margin: 1%;
+}
+
+.input {
+  width: 100%;
+  font-size: x-large;
+  text-align: center;
+}
+
+.input-option {
+  font-size: large;
+  width: 25%;
+  margin: 1%;
+}
+
+.destination-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr;
+}
+
+.destination {
+  font-family: "Nixie One";
+  font-size: large;
+  margin: 4%;
+  padding-bottom: 2%;
+  text-align: center;
+  border: 3px dotted #D63230;
+}
+
+.destination p {
+  font-family: "Raleway";
+  margin: 2%;
+  font-size: large;
+}
+
+.book-trip-button {
+  margin: 3%;
+  width: 40%;
+  font-family: "Nixie One";
+  font-size: x-large;
+  background-color: #D63230;
+  color: #FFFFFF;
+  border-radius: 30px/60px;
+}
+
+.destination-details {
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+}
+
+.destination-images {
+  width: 100%;
+  height: 16em;
 }
 
 .trip-type-buttons {
@@ -134,22 +258,46 @@ main {
 }
 
 .trip {
+  font-family: "Raleway";
   width: 85%;
   display: flex;
-  // flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
+  // align-items: center;
   border: 5px solid black;
   border-image-slice: 1;
   margin: 3%;
 }
 
+.trip-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1%;
+  font-size: large;
+  text-align: left;
+}
+
+.destination-label {
+  font-family: "Nixie One";
+  // font-size: x-large;
+  margin: 1%;
+}
+
+.no-matching-trips {
+  width: 100%;
+  height: 250px;
+  font-family: "Nixie One";
+  font-size: x-large;
+  align-items: center;
+}
+
 .trip-border {
-  border-image-source: linear-gradient(to left, #EFD1DC, #E0C867, #89DAFA);
+  border-image-source: linear-gradient(to left, #F5F5F5, #F6AE2D, #617B94, #617B94, #F6AE2D, #F5F5F5);
 }
 
 img {
-  height: 100px;
-  width: 100px;
+  height: auto;
+  width: 45%;
 }
 
 footer {

@@ -4,50 +4,61 @@
     <title>Wander</title>
     <link href="https://fonts.googleapis.com/css2?family=Nixie+One&family=Raleway:wght@400;600;800&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body class="body">
     <header>
-      <h1>WANDER</h1>
+      <div class="wander-icons">
+        <img class="plane-icon" src="./images/plane.png" alt="Wander Icon">
+        <h1>WANDR</h1>
+      </div>
       <div class="login-corner">
         <h2 class="user-account"></h2>
-        <button type="button" class="login-button" name="return-to-login">SIGN OUT</button>
+        <button type="button" class="login-button" name="return-to-login">logout</button>
       </div>
     </header>
-    <main>
+    <main class="main">
       <section class="user-summary"></section>
       <section class="navigation">
         <nav class="trip-selection-buttons">
-          <button class="trip-selection-buttons my-trips-button" type="button">MY TRIPS</button>
+          <button class="trip-selection-buttons my-trips-button" type="button">VIEW MY TRIPS</button>
+          <img class="postcard-icon" src="./images/postcard.png" alt="">
           <button class="trip-selection-buttons new-trip-button" type="button">BOOK NEW TRIP</button>
         </nav>
         <nav class="trip-selection">
           <div class="trip-filter-section">
-            <h1>FILTER TRIPS</h1>
+            <h1 class="filter-label">FILTER TRIPS</h1>
             <div class="trip-type-buttons">
-              <button class="all-trips trip-filter" type="button" name="button">ALL</button>
-              <button class="past-trips trip-filter" type="button">PAST</button>
-              <button class="present-trips trip-filter" type="button">PRESENT</button>
-              <button class="future-trips trip-filter" type="button">FUTURE</button>
-              <button class="pending-trips trip-filter" type="button">PENDING</button>
+              <button class="all-trips trip-filter" type="button" name="button">All</button>
+              <button class="past-trips trip-filter" type="button">Past</button>
+              <button class="present-trips trip-filter" type="button">Present</button>
+              <button class="future-trips trip-filter" type="button">Future</button>
+              <button class="pending-trips trip-filter" type="button">Pending</button>
             </div>
           </div>
           <div class="trip-inputs">
-            <label for="start-date">Departure Date:</label>
-            <input class="start-date-input" type="date" name="start-date" required>
-            <label for"number-of-travelers">How Many People?</label>
-            <input class="travelers-input" type="number" min="1" max="12" name="number-of-travelers" value="1" required>
-            <label for="duration">How Many Days?</label>
-            <input class="trip-duration" value="1" type="number" min="1" max="30" name="duration" required>
+            <div class="input-option">
+              <label for="start-date">Departure Date:</label>
+              <input class="start-date-input input" type="date" id="start-date" required>
+            </div>
+            <div class="input-option">
+              <label for="number-of-travelers">How Many People?</label>
+              <input class="travelers-input input" type="number" min="1" max="12" id="number-of-travelers" value="1" required>
+            </div>
+            <div class="input-option">
+              <label for="duration">How Many Days?</label>
+              <input class="trip-duration input" value="1" type="number" min="1" max="30" id="duration" required>
+            </div>
             <button class="find-trips-button" type="button">Find Trips</button>
           </div>
         </nav>
       </section>
       <section class="user-trips"></section>
-      <footer>
-        <p>WanderLove</p>
-        <p>Contact Us: 123-456-7890</p>
-        <p>Send Us A Postcard!</p>
-      </footer>
+      <section class="destination-section"></section>
     </main>
+    <footer>
+      <p>Wandr®</p>
+      <p>Contact Us: 213-645-8790</p>
+      <p>Send Us A Postcard!</p>
+    </footer>
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
 </html>
