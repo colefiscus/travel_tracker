@@ -1,3 +1,9 @@
+const loginPage = document.querySelector(".login-page");
+const mainPage = document.querySelector(".main-page");
+const header = document.querySelector(".header");
+const footer = document.querySelector(".footer");
+const userNameLogin = document.querySelector(".username-login");
+const passwordLogin = document.querySelector(".password-login");
 const userName = document.querySelector(".user-account");
 const userTrips = document.querySelector(".user-trips");
 const destinationCardSection = document.querySelector(".destination-section")
@@ -10,6 +16,15 @@ const dateInput = document.querySelector(".start-date-input");
 const travelersInput = document.querySelector(".travelers-input");
 const durationInput = document.querySelector(".trip-duration");
 const submitButton = document.querySelector(".find-trips-button");
+
+export const changeScreensAfterLogin = () => {
+  userNameLogin.value = "";
+  passwordLogin.value = "";
+  loginPage.classList.toggle("hidden");
+  mainPage.classList.toggle("hidden");
+  header.classList.toggle("hidden");
+  footer.classList.toggle("hidden");
+}
 
 export const changeUserName = user => {
   userName.innerText = user.name;

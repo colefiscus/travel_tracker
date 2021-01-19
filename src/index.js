@@ -9,10 +9,6 @@ import { Destination } from "./Destination.js";
 import * as apiCalls from "./util.js";
 import * as domUpdates from "./DOMupdate.js";
 
-const loginPage = document.querySelector(".login-page");
-const mainPage = document.querySelector(".main-page");
-const header = document.querySelector(".header");
-const footer = document.querySelector(".footer");
 const userNameLogin = document.querySelector(".username-login");
 const passwordLogin = document.querySelector(".password-login");
 const loginButton = document.querySelector(".login-button");
@@ -54,12 +50,7 @@ function loginOrLogout() {
   trips = [];
   userDestinations = [];
   allDestinationsOpts = [];
-  userNameLogin.value = "";
-  passwordLogin.value = "";
-  loginPage.classList.toggle("hidden");
-  mainPage.classList.toggle("hidden");
-  header.classList.toggle("hidden");
-  footer.classList.toggle("hidden");
+  domUpdates.changeScreensAfterLogin();
 }
 
 const displayInitialPage = (userNumber) => {
