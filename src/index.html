@@ -5,7 +5,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nixie+One&family=Raleway:wght@400;600;800&display=swap" rel="stylesheet">
   </head>
   <body class="body">
-    <header class="hidden">
+    <header class="header hidden">
       <div class="wander-icons">
         <img class="plane-icon" src="./images/plane.png" alt="Wander Icon">
         <h1>WANDR</h1>
@@ -21,18 +21,18 @@
       <form name="login-form-section">
         <div class="login-form">
           <label for="username">USERNAME:</label>
-          <input type="text" id="username" autofocus>
+          <input class="username-login" type="text" id="username" autofocus>
         </div>
         <div class="login-form">
           <label for="password">PASSWORD:</label>
-          <input type="password" id="password">
+          <input class="password-login" type="password" id="password">
         </div>
         <div class="login-form">
           <button class="login-button" type="button" name="login-button">SUBMIT</button>
         </div>
       </form>
     </main>
-    <main class="main hidden">
+    <main class="main-page hidden">
       <section class="user-summary"></section>
       <section class="navigation">
         <nav class="trip-selection-buttons">
@@ -71,7 +71,7 @@
       <section class="user-trips"></section>
       <section class="destination-section"></section>
     </main>
-    <footer class="hidden">
+    <footer class="footer hidden">
       <p>Wandr®</p>
       <p>Contact Us: 213-645-8790</p>
       <p>Send Us A Postcard!</p>

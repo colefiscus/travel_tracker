@@ -9,6 +9,13 @@ import { Destination } from "./Destination.js";
 import * as apiCalls from "./util.js";
 import * as domUpdates from "./DOMupdate.js";
 
+const loginPage = document.querySelector(".login-page");
+const mainPage = document.querySelector(".main-page");
+const header = document.querySelector(".header");
+const footer = document.querySelector(".footer");
+const userNameLogin = document.querySelector(".username-login");
+const passwordLogin = document.querySelector(".password-login");
+const loginButton = document.querySelector(".login-button");
 const filterTripButtons = document.querySelectorAll(".trip-filter");
 const myTripsButton = document.querySelector(".my-trips-button");
 const bookTripButton = document.querySelector(".new-trip-button");
@@ -18,6 +25,7 @@ const dateInput = document.querySelector(".start-date-input");
 const travelersInput = document.querySelector(".travelers-input");
 const durationInput = document.querySelector(".trip-duration");
 
+loginButton.addEventListener("click", loginUser);
 filterTripButtons.forEach(button => addEventListener("click", filterTrips));
 bookTripButton.addEventListener("click", domUpdates.showUserTripInputs);
 findTrips.addEventListener("click", displayNewTrips);
@@ -31,21 +39,32 @@ const trips = [];
 const userDestinations = [];
 const allDestinationsOpts = [];
 
-window.onload = displayInitialPage;
+function loginUser() {
+  const usernameSplit = userNameLogin.value.split("er");
+  const userNumber = usernameSplit[1];
+  if (userNameLogin.value.includes("traveler") && passwordLogin.value === "travel2020") {
+    displayInitialPage(userNumber)
+  }
+}
 
-function displayInitialPage() {
-  const singleUser = apiCalls.getSingleUser(5);
+const switchScreenFromLogin = () => {
+  loginPage.classList.toggle("hidden");
+  mainPage.classList.toggle("hidden");
+  header.classList.toggle("hidden");
+  footer.classList.toggle("hidden");
+}
+
+const displayInitialPage = (userNumber) => {
+  const singleUser = apiCalls.getSingleUser(userNumber);
   const allTrips = apiCalls.getAllTrips();
   const allDestinations = apiCalls.getAllDestinations();
   Promise.all([singleUser, allTrips, allDestinations])
   .then(orderedData => {
+    switchScreenFromLogin();
     createNewUser(orderedData[0]);
     createDestinationOptArray(orderedData[2].destinations);
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
     loadInitialScreen(user, userDestinations, trips);
-    // console.log(orderedData[0])
-    // console.log(orderedData[1])
-    // console.log(orderedData[2])
   })
   .catch(error => handleError(error));
 }
