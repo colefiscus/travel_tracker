@@ -42,9 +42,13 @@ describe("User", function() {
   });
 
   it("Should be able to calculate the total cost for all of their trips", () => {
-    // console.log(destinations)
-    // console.log(trips)
     const totalPrice = user.calculateTotalCost(destinations, trips)
     expect(totalPrice).to.equal(23540)
-  })
+  });
+
+  it("Should be able to tell a user their rank based on their point total", () => {
+    const totalPrice = user.calculateTotalCost(destinations, trips);
+    const rank = user.determineRank(totalPrice);
+    expect(rank).to.deep.equal({rank: "Pioneer", pointsToNextRank: 6460})
+  });
 })
