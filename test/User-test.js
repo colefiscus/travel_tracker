@@ -41,10 +41,10 @@ describe("User", function() {
     expect(user.travelerType).to.equal("relaxer");
   });
 
-  it.skip("Should be able to calculate the total cost for all of their trips", () => {
+  it("Should be able to calculate the total cost for all of their trips", () => {
     // console.log(destinations)
     // console.log(trips)
     const totalPrice = user.calculateTotalCost(destinations, trips)
-    expect(totalPrice).to.equal(21400)
+    expect(totalPrice).to.equal(23540)
   })
 })
