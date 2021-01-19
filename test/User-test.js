@@ -16,9 +16,11 @@ describe("User", function() {
   })
 
   it ("Should have an ID", () => {
-    expect(user.id).to.equal(1)
+    expect(user.id).to.equal(1);
   })
 
-  
+  it ("Should have a name", () => {
+    expect(user.name).to.equal("Cole Fiscus");
+  })
 
 })
