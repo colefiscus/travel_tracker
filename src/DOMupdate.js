@@ -2,6 +2,8 @@ const loginPage = document.querySelector(".login-page");
 const mainPage = document.querySelector(".main-page");
 const header = document.querySelector(".header");
 const footer = document.querySelector(".footer");
+const loginFormSection = document.querySelector(".login-form-section")
+const loginButton = document.querySelector(".login-button");
 const userNameLogin = document.querySelector(".username-login");
 const passwordLogin = document.querySelector(".password-login");
 const userName = document.querySelector(".user-account");
@@ -24,6 +26,18 @@ export const changeScreensAfterLogin = () => {
   mainPage.classList.toggle("hidden");
   header.classList.toggle("hidden");
   footer.classList.toggle("hidden");
+}
+
+export const changeLoginButtonBack = () => {
+  loginButton.innerText = "SUBMIT";
+  loginButton.removeAttribute("disabled")
+}
+
+export const alertUserOfLoginError = () => {
+  userNameLogin.value = "";
+  passwordLogin.value = "";
+  loginButton.innerText = "TRY AGAIN";
+  loginButton.setAttribute("disabled", true)
 }
 
 export const changeUserName = user => {

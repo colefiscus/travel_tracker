@@ -23,6 +23,7 @@ const travelersInput = document.querySelector(".travelers-input");
 const durationInput = document.querySelector(".trip-duration");
 
 loginButton.addEventListener("click", loginUser);
+userNameLogin.addEventListener("keydown", allowAnotherLoginTry);
 logoutButton.addEventListener("click", loginOrLogout)
 filterTripButtons.forEach(button => addEventListener("click", filterTrips));
 bookTripButton.addEventListener("click", domUpdates.showUserTripInputs);
@@ -40,10 +41,16 @@ let allDestinationsOpts = [];
 function loginUser() {
   const usernameSplit = userNameLogin.value.split("er");
   const userNumber = usernameSplit[1];
-  if (userNameLogin.value.includes("traveler") && passwordLogin.value === "travel2020") {
+  if (userNameLogin.value.includes("traveler") && userNumber <= 50 && userNumber > 0 && passwordLogin.value === "travel2020") {
     loginOrLogout();
     displayInitialPage(userNumber);
+  } else {
+    domUpdates.alertUserOfLoginError();
   }
+}
+
+function allowAnotherLoginTry() {
+  domUpdates.changeLoginButtonBack()
 }
 
 function loginOrLogout() {
