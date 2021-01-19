@@ -25,7 +25,7 @@ const durationInput = document.querySelector(".trip-duration");
 loginButton.addEventListener("click", loginUser);
 userNameLogin.addEventListener("keydown", allowAnotherLoginTry);
 logoutButton.addEventListener("click", loginOrLogout)
-filterTripButtons.forEach(button => addEventListener("click", filterTrips));
+filterTripButtons.forEach(button => button.addEventListener("click", filterTrips));
 bookTripButton.addEventListener("click", domUpdates.showUserTripInputs);
 findTrips.addEventListener("click", displayNewTrips);
 newDestinations.addEventListener("click", bookNewTrip);
@@ -65,13 +65,13 @@ const displayInitialPage = (userNumber) => {
   const allTrips = apiCalls.getAllTrips();
   const allDestinations = apiCalls.getAllDestinations();
   Promise.all([singleUser, allTrips, allDestinations])
-  .then(orderedData => {
-    createNewUser(orderedData[0]);
-    createAllDestinationOptions(orderedData[2].destinations);
-    createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
-    loadInitialScreen(user, userDestinations, trips);
+    .then(orderedData => {
+  createNewUser(orderedData[0]);
+  createAllDestinationOptions(orderedData[2].destinations);
+  createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
+  loadInitialScreen(user, userDestinations, trips);
   })
-  .catch(error => handleError(error));
+    .catch(error => handleError(error));
 }
 
 const createNewUser = userData => {
@@ -88,7 +88,7 @@ const createAllDestinationOptions = allDestinations => {
 const createMatchingTrips = (user, tripData, destinationData) => {
   const tripsByUser = tripData.filter(trip => trip.userID === user.id);
   const destinationsByUserTrips = tripsByUser.map(trip => {
-     return destinationData.find(destination => destination.id === trip.destinationID)
+    return destinationData.find(destination => destination.id === trip.destinationID)
   })
   tripsByUser.forEach(trip => createNewTrip(trip))
   destinationsByUserTrips.forEach(destination => createMatchingDestination(destination))
@@ -122,7 +122,7 @@ const handleError = error => {
 }
 
 function filterTrips() {
-   if (event.target.classList.contains("all-trips")) {
+  if (event.target.classList.contains("all-trips")) {
     domUpdates.displayUserTrips(userDestinations, trips);
   } else if (event.target.classList.contains("past-trips")) {
     filterPastTrips();
@@ -137,7 +137,7 @@ function filterTrips() {
 
 const matchDestinationsToTrips = (destinations, trips) => {
   return destinations.filter(destination => {
-    return trips.find(trip => trip.destinationID == destination.id);
+    return trips.find(trip => trip.destinationID === destination.id);
   });
 }
 

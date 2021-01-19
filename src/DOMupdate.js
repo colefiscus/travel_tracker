@@ -2,7 +2,6 @@ const loginPage = document.querySelector(".login-page");
 const mainPage = document.querySelector(".main-page");
 const header = document.querySelector(".header");
 const footer = document.querySelector(".footer");
-const loginFormSection = document.querySelector(".login-form-section")
 const loginButton = document.querySelector(".login-button");
 const userNameLogin = document.querySelector(".username-login");
 const passwordLogin = document.querySelector(".password-login");
@@ -102,18 +101,18 @@ export const changeDisplay = (destinations, trips) => {
 }
 
 export const displayUserTrips = (destinations, trips) => {
-    destinationCardSection.innerHTML = "";
-    userTrips.innerHTML = "";
-    if (trips.length) {
-      trips.forEach(trip => {
-        destinations.forEach(destination => {
-          addTripCardsToPage(trip, destination);
-        });
+  destinationCardSection.innerHTML = "";
+  userTrips.innerHTML = "";
+  if (trips.length) {
+    trips.forEach(trip => {
+      destinations.forEach(destination => {
+        addTripCardsToPage(trip, destination);
       });
-    } else {
-      userTrips.innerHTML = `<p class="trip-border trip no-matching-trips">Uh-oh, no trips of yours fit that criteria</p>`;
-    }
+    });
+  } else {
+    userTrips.innerHTML = `<p class="trip-border trip no-matching-trips">Uh-oh, no trips of yours fit that criteria</p>`;
   }
+}
 
 const addTripCardsToPage = (trip, destination) => {
   if (trip.destinationID === destination.id) {
@@ -149,10 +148,10 @@ export const showUserTripInputs = () => {
 }
 
 export const setTripInputs = () => {
-    dateInput.setAttribute("readonly", true);
-    durationInput.setAttribute("readonly", true);
-    travelersInput.setAttribute("readonly", true);
-    submitButton.innerText = `RESET`;
+  dateInput.setAttribute("readonly", true);
+  durationInput.setAttribute("readonly", true);
+  travelersInput.setAttribute("readonly", true);
+  submitButton.innerText = `RESET`;
 }
 
 export const resetTripInputs = () => {
@@ -176,19 +175,19 @@ export const showDestinationOpts = destinations => {
 }
 
 const createDestinationCards = (destination, price) => {
-    destinationCardSection.innerHTML += `
-    <article class="destination" id="${destination.id}">
-      <img class="destination-images" src="${destination.image}" alt="${destination.alt}">
-      <div class="destination-details">
-        <div>
-          <h2>${destination.destination}</h2>
-          <p>Departure: ${dateInput.value}</p>
-          <p>Days: ${durationInput.value}</p>
-          <p>Number of Wanderers: ${travelersInput.value}</p>
-          <p class="trip-price">Total Cost: $${price}</p>
-        </div>
-        <button class="book-trip-button" type="button">BOOK IT</button>
+  destinationCardSection.innerHTML += `
+  <article class="destination" id="${destination.id}">
+    <img class="destination-images" src="${destination.image}" alt="${destination.alt}">
+    <div class="destination-details">
+      <div>
+        <h2>${destination.destination}</h2>
+        <p>Departure: ${dateInput.value}</p>
+        <p>Days: ${durationInput.value}</p>
+        <p>Number of Wanderers: ${travelersInput.value}</p>
+        <p class="trip-price">Total Cost: $${price}</p>
       </div>
-    </article>
-    `
-  };
+      <button class="book-trip-button" type="button">BOOK IT</button>
+    </div>
+  </article>
+  `
+};

@@ -29,13 +29,16 @@ describe("Destination", function() {
   });
 
   it("Should have an price for flights per person", () => {
-    expect(destination.estFlightCostPerPers).to.equal(100)});
+    expect(destination.estFlightCostPerPers).to.equal(100)
+  });
 
   it("Should have an image link to display", () => {
-    expect(destination.image).to.equal("https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80")});
+    expect(destination.image).to.equal("https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80")
+  });
 
   it("Should have an an alternate description for the image", () => {
-    expect(destination.alt).to.equal("overview of city buildings with a clear sky")});
+    expect(destination.alt).to.equal("overview of city buildings with a clear sky")
+  });
 
   it("Should be able to calculate the cost of a trip given trip details", () => {
     const trip = new Trip(testData[1].trips[0]);
