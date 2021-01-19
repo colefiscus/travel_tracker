@@ -46,4 +46,9 @@ describe("Trip", function() {
   it("Should have a list of suggested activities", () => {
     expect(trip.suggestedActivities).to.deep.equal([]);
   });
+
+  it("Should be able to determine a trip's date range", () => {
+    const dates = trip.determineDateRange()
+    expect(dates).to.deep.equal({startDate: "Mon Sep 16 2019", endDate: "Tue Sep 24 2019"});
+  });
 });
