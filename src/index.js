@@ -66,11 +66,11 @@ const displayInitialPage = (userNumber) => {
   const allDestinations = apiCalls.getAllDestinations();
   Promise.all([singleUser, allTrips, allDestinations])
     .then(orderedData => {
-  createNewUser(orderedData[0]);
-  createAllDestinationOptions(orderedData[2].destinations);
-  createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
-  loadInitialScreen(user, userDestinations, trips);
-  })
+      createNewUser(orderedData[0]);
+      createAllDestinationOptions(orderedData[2].destinations);
+      createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
+      loadInitialScreen(user, userDestinations, trips);
+    })
     .catch(error => handleError(error));
 }
 

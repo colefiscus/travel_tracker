@@ -48,7 +48,7 @@ export class User {
       rank = "Invalid Data";
       pointsToNextRank = "Invalid Data"
       return;
-  }
+    }
     return {rank: rank, pointsToNextRank: pointsToNextRank};
   }
 }
