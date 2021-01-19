@@ -16,6 +16,7 @@ const footer = document.querySelector(".footer");
 const userNameLogin = document.querySelector(".username-login");
 const passwordLogin = document.querySelector(".password-login");
 const loginButton = document.querySelector(".login-button");
+const logoutButton = document.querySelector(".logout-button");
 const filterTripButtons = document.querySelectorAll(".trip-filter");
 const myTripsButton = document.querySelector(".my-trips-button");
 const bookTripButton = document.querySelector(".new-trip-button");
@@ -26,6 +27,7 @@ const travelersInput = document.querySelector(".travelers-input");
 const durationInput = document.querySelector(".trip-duration");
 
 loginButton.addEventListener("click", loginUser);
+logoutButton.addEventListener("click", loginOrLogout)
 filterTripButtons.forEach(button => addEventListener("click", filterTrips));
 bookTripButton.addEventListener("click", domUpdates.showUserTripInputs);
 findTrips.addEventListener("click", displayNewTrips);
@@ -35,19 +37,25 @@ myTripsButton.addEventListener("click", () => {
 });
 
 let user;
-const trips = [];
-const userDestinations = [];
-const allDestinationsOpts = [];
+let trips = [];
+let userDestinations = [];
+let allDestinationsOpts = [];
 
 function loginUser() {
   const usernameSplit = userNameLogin.value.split("er");
   const userNumber = usernameSplit[1];
   if (userNameLogin.value.includes("traveler") && passwordLogin.value === "travel2020") {
-    displayInitialPage(userNumber)
+    loginOrLogout();
+    displayInitialPage(userNumber);
   }
 }
 
-const switchScreenFromLogin = () => {
+function loginOrLogout() {
+  trips = [];
+  userDestinations = [];
+  allDestinationsOpts = [];
+  userNameLogin.value = "";
+  passwordLogin.value = "";
   loginPage.classList.toggle("hidden");
   mainPage.classList.toggle("hidden");
   header.classList.toggle("hidden");
@@ -60,7 +68,6 @@ const displayInitialPage = (userNumber) => {
   const allDestinations = apiCalls.getAllDestinations();
   Promise.all([singleUser, allTrips, allDestinations])
   .then(orderedData => {
-    switchScreenFromLogin();
     createNewUser(orderedData[0]);
     createDestinationOptArray(orderedData[2].destinations);
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
@@ -191,7 +198,7 @@ function displayNewTrips() {
 
 function bookNewTrip() {
   const onSuccess = () => {
-    displayInitialPage();
+    displayInitialPage(user.id);
   }
   const eventTarget = event.target
   if (eventTarget.classList.contains("book-trip-button")) {
