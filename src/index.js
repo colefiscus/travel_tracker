@@ -1,4 +1,6 @@
 import "./css/base.scss";
+import "./images/plane.png"
+import "./images/postcard.png"
 
 import { User } from "./User.js";
 import { Trip } from "./Trip.js";

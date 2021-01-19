@@ -41,7 +41,7 @@ export class User {
         pointsToNextRank = 100000 - points;
         break;
       case points >= 100000:
-        rank = "Wanderer";
+        rank = "WANDRER";
         pointsToNextRank = 0
         break;
       default:

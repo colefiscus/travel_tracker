@@ -19,9 +19,21 @@ header {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: #89DAFA;
   border-bottom: 3px double #202931;
+}
+
+.wander-icons {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.plane-icon {
+  width: 4em;
+  height: 4em;
+  padding: 2%;
 }
 
 .login-corner {
@@ -29,6 +41,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-right: 20px;
 }
 
 // ------------------------ BUTTONS ------------------------
@@ -140,6 +153,11 @@ hr {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.postcard-icon {
+  width: 5em;
+  height: 5em;
 }
 
 .hidden {
