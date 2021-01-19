@@ -16,8 +16,9 @@ export const changeUserName = user => {
 }
 
 export const changeUserSummary = (user, destinations, trips) => {
-  const points = user.calculateTotalCost(destinations, trips)
-  const rank = user.determineRank(points)
+  let points = user.calculateTotalCost(destinations, trips);
+  const rank = user.determineRank(points);
+  points = points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   userSummary.innerHTML = `
     <div class="user-info">
       <p class="user-rank-and-points">${points}</p>
@@ -35,9 +36,10 @@ export const changeUserSummary = (user, destinations, trips) => {
 
 const addPointsToNextRank = rank => {
   if (rank.pointsToNextRank > 0) {
+    const pointsToNextRank = rank.pointsToNextRank.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     userSummary.insertAdjacentHTML("beforeend", `
     <div class="user-info">
-      <p class="user-rank-and-points">${rank.pointsToNextRank}</p>
+      <p class="user-rank-and-points">${pointsToNextRank}</p>
       <hr>
       <p><b>Points to Next Rank</b></p>
     </div
@@ -87,7 +89,7 @@ export const displayUserTrips = (destinations, trips) => {
 const addTripCardsToPage = (trip, destination) => {
   if (trip.destinationID === destination.id) {
     const dates = trip.determineDateRange();
-    const price = destination.calculateTripCost(trip)
+    const price = destination.calculateTripCost(trip).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     userTrips.innerHTML += `
     <article class="trip trip-border" id="${trip.id}">
       <img src="${destination.image}" alt="${destination.alt}">
@@ -138,7 +140,8 @@ export const resetTripInputs = () => {
 export const showDestinationOpts = destinations => {
   destinations.forEach(destination => {
     const initialPrice = (destination.estLodgingCostPerDay * durationInput.value * travelersInput.value) + (destination.estFlightCostPerPers * travelersInput.value);
-    const priceWithFee = initialPrice + (initialPrice * 0.1);
+    const priceWithFee = (initialPrice + (initialPrice * 0.1)).toFixed();
+    const formattedPrice = priceWithFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     destinationCardSection.innerHTML += `
     <article class="destination" id="${destination.id}">
       <img class="destination-images" src="${destination.image}" alt="${destination.alt}">
@@ -148,7 +151,7 @@ export const showDestinationOpts = destinations => {
           <p>Departure: ${dateInput.value}</p>
           <p>Days: ${durationInput.value}</p>
           <p>Number of Wanderers: ${travelersInput.value}</p>
-          <p class="trip-price">Total Cost: $${priceWithFee.toFixed()}</p>
+          <p class="trip-price">Total Cost: $${formattedPrice}</p>
         </div>
         <button class="book-trip-button" type="button">BOOK IT</button>
       </div>
