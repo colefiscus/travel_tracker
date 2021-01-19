@@ -50,7 +50,7 @@ function loginUser() {
 }
 
 function allowAnotherLoginTry() {
-  domUpdates.changeLoginButtonBack()
+  domUpdates.changeLoginButtonBack();
 }
 
 function loginOrLogout() {
@@ -67,7 +67,7 @@ const displayInitialPage = (userNumber) => {
   Promise.all([singleUser, allTrips, allDestinations])
   .then(orderedData => {
     createNewUser(orderedData[0]);
-    createDestinationOptArray(orderedData[2].destinations);
+    createAllDestinationOptions(orderedData[2].destinations);
     createMatchingTrips(user, orderedData[1].trips, orderedData[2].destinations);
     loadInitialScreen(user, userDestinations, trips);
   })
@@ -78,7 +78,7 @@ const createNewUser = userData => {
   user = new User(userData);
 }
 
-const createDestinationOptArray = allDestinations => {
+const createAllDestinationOptions = allDestinations => {
   allDestinations.forEach(destination => {
     const destinationOpt = new Destination(destination);
     allDestinationsOpts.push(destinationOpt);
@@ -214,10 +214,3 @@ function bookNewTrip() {
     apiCalls.addNewTrip(options, onSuccess);
   }
 }
-
-// COME BACK TO IF TIME??? -------------------------------
-// const sortTripsByDate = (trips, userDestinations) => {
-//   const sortedTrips =  trips.sort((a, b) => {
-//     return (new Date(b.date)) - (new Date(a.date))
-//   })
-// }

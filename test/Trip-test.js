@@ -1,6 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
-import { testData } from "../src/data/test-data.js";
+import { testData } from "./data/test-data.js";
 import { Trip } from "../src/Trip.js";
 
 describe("Trip", function() {
