@@ -1,4 +1,4 @@
-const testData = [
+export const testData = [
   {"travelers": [
   {id: 1, name: "Cole Fiscus", travelerType: "relaxer"},
   {id: 2, name: "Brianna Callahan", travelerType: "relaxer"},
