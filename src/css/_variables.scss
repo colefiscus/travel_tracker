@@ -1,0 +1,31 @@
+$skyblue: #89DAFA;
+$darkblue: #004266;
+$pink: #EFD1DC;
+$gold: #F6AE2D;
+$darkgray: #202931;
+$red: #D63230;
+$black: #000000;
+$white: #ffffff;
+$cream: #F5F5F5;
+
+$horizontal-border: 3px double $darkgray;
+
+$main-font: "Nixie One";
+$second-font: "Raleway";
+
+.sass-login {
+  font-family: $main-font;
+  font-size: x-large;
+  width: 70%;
+}
+
+.sass-icon {
+  width: 4em;
+  height: 4em;
+}
+
+.sass-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

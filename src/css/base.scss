@@ -1,3 +1,7 @@
+@import 'variables';
+@import 'login';
+@import 'header_and_footer';
+
 html,
 body {
   margin: 0;
@@ -7,115 +11,40 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Nixie One';
-  background-color: #EBEBEB;
+  font-family: $main-font;
   background-image: url(https://images.pexels.com/photos/911738/pexels-photo-911738.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-}
-
-// ------------------------HEADER ------------------------
-
-.login-page {
-  width: 100%;
-  height: 100vh;
-  background-image: url(https://images.pexels.com/photos/1831234/pexels-photo-1831234.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-  font-size: xx-large;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.login-title {
-  margin-bottom: 2%;
-}
-
-.login-form {
-  font-size: x-large;
-  width: auto;
-  text-align: center;
-  margin: 3%;
-}
-
-.login-icon {
-  width: 4em;
-  height: 4em;
-}
-
-.login-form input {
-  font-family: "Nixie One";
-  width: 70%;
-  font-size: x-large;
-}
-
-.login-button {
-  width: 70%;
-  font-family: "Nixie One";
-  font-size: x-large;
-  background-color: #89DAFA;
-  margin-top: 3%;
-}
-
-header {
-  position: sticky;
-  top: 0px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #89DAFA;
-  border-bottom: 3px double #202931;
-}
-
-.wander-icons {
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
-}
-
-.plane-icon {
-  width: 4em;
-  height: 4em;
-  padding: 2%;
-}
-
-.login-corner {
-  width: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-right: 20px;
 }
 
 // ------------------------ BUTTONS ------------------------
 
 .logout-button {
-  font-family: "Raleway";
+  font-family: $second-font;
   font-size: large;
   width: auto;
   height: 35%;
-  background-color: #004266;
-  color: #ffffff;
+  background-color: $darkblue;
+  color: $white;
   border-radius: 30px/60px;
   margin-left: 20px;
   padding: 2%;
 }
 
 .trip-type-buttons > button {
-  font-family: "Raleway";
+  font-family: $second-font;
   font-size: medium;
   width: 15%;
   height: 100%;
-  background-color: #004266;
-  color: #FFFFFF;
+  background-color: $darkblue;
+  color: $white;
 }
 
 .trip-selection-buttons > button {
-  font-family: "Nixie One";
+  font-family: $main-font;
   font-size: x-large;
   width: auto;
   height: 100%;
-  background-color: #004266;
-  color: #ffffff;
+  background-color: $darkblue;
+  color: $white;
   border-radius: 30px/60px;
   padding: 2%;
 }
@@ -124,7 +53,7 @@ header {
   width: 25%;
   height: 100%;
   background-color: #D8F3FD;
-  color: #000000;
+  color: $black;
   border-radius: 20px;
 }
 
@@ -137,12 +66,12 @@ header {
 }
 
 .find-trips-button {
-  font-family: "Nixie One";
+  font-family: $main-font;
   font-size: x-large;
   width: auto;
   height: 100%;
-  background-color: #004266;
-  color: #ffffff;
+  background-color: $darkblue;
+  color: $white;
   border-radius: 30px/60px;
   margin: 2%;
   padding: 2%;
@@ -157,14 +86,14 @@ header {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border-left: 12px double #89DAFA;
-  border-right: 12px double #EFD1DC;
-  background-color: #F5F5F5
+  border-left: 12px double $skyblue;
+  border-right: 12px double $pink;
+  background-color: $cream;
 }
 
 .user-summary {
-  font-family: "Raleway";
-  border-bottom: 8px double #004266;
+  font-family: $second-font;
+  border-bottom: 8px double $darkblue;
   width: 80%;
   display: flex;
   justify-content: space-around;
@@ -176,7 +105,7 @@ header {
 
 hr {
   width: 100%;
-  border: 1px solid #F6AE2D;
+  border: 1px solid $gold;
 }
 
 .user-info {
@@ -185,7 +114,7 @@ hr {
 
 .user-rank-and-points {
   width: auto;
-  font-family: "Nixie One";
+  font-family: $main-font;
   font-size: xx-large;
   margin: 10%;
 }
@@ -252,16 +181,16 @@ hr {
 }
 
 .destination {
-  font-family: "Nixie One";
+  font-family: $main-font;
   font-size: large;
   margin: 4%;
   padding-bottom: 2%;
   text-align: center;
-  border: 3px dotted #D63230;
+  border: 3px dotted $red;
 }
 
 .destination p {
-  font-family: "Raleway";
+  font-family: $second-font;
   margin: 2%;
   font-size: large;
 }
@@ -269,10 +198,10 @@ hr {
 .book-trip-button {
   margin: 3%;
   width: 40%;
-  font-family: "Nixie One";
+  font-family: $main-font;
   font-size: x-large;
-  background-color: #D63230;
-  color: #FFFFFF;
+  background-color: $red;
+  color: $white;
   border-radius: 30px/60px;
 }
 
@@ -300,7 +229,7 @@ hr {
 }
 
 .trip {
-  font-family: "Raleway";
+  font-family: $second-font;
   width: 85%;
   display: flex;
   justify-content: space-evenly;
@@ -320,33 +249,23 @@ hr {
 }
 
 .destination-label {
-  font-family: "Nixie One";
-  // font-size: x-large;
+  font-family: $main-font;
   margin: 1%;
 }
 
 .no-matching-trips {
   width: 100%;
   height: 250px;
-  font-family: "Nixie One";
+  font-family: $main-font;
   font-size: x-large;
   align-items: center;
 }
 
 .trip-border {
-  border-image-source: linear-gradient(to left, #F5F5F5, #F6AE2D, #617B94, #617B94, #F6AE2D, #F5F5F5);
+  border-image-source: linear-gradient(to left, $cream, $gold, $darkblue, $darkblue, $gold, $cream);
 }
 
 img {
   height: auto;
   width: 45%;
-}
-
-footer {
-  background-color: #EFD1DC;
-  border-top: 3px double #202931;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
 }
