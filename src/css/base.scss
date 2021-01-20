@@ -5,7 +5,9 @@
 @import 'trips';
 @import 'destinations';
 
-html,
+html {
+  margin: 0;
+}
 body {
   font-family: $main-font;
   min-height: 100vh;
@@ -105,4 +107,67 @@ hr {
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .main-page
+  {
+    width: 100%;
+    border: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .user-summary {
+    flex-direction: column;
+    align-items: center;
+    font-size: larger;
+  }
+  .user-info {
+    width: 70%;
+  }
+  .destination-section {
+    grid-template-columns: 1fr;
+  }
+  .trip-selection-buttons {
+    flex-direction: column;
+    align-items: center;
+    margin: 4%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  header {
+    justify-content: space-around;
+  }
+  img {
+    width: 100%;
+  }
+  .trip {
+    flex-direction: column;
+    align-items: center;
+  }
+  .trip-card-info {
+    text-align: center;
+    margin: 0;
+  }
+  .trip-type-buttons > button {
+    width: 20%;
+  }
+  .input-option {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .wander-icons h1 {
+    display: none;
+  }
+  .trip-type-buttons > button {
+    font-size: small;
+    border-radius: 0;
+  }
+  .wandr-comment {
+    display: none;
+  }
 }

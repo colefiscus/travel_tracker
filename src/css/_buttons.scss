@@ -17,6 +17,7 @@
   font-size: x-large;
   border-radius: 30px/60px;
   padding: 2%;
+  align-items: center;
   &:hover, &:disabled {
     @extend .sass-button-select;
   }
