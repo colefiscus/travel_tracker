@@ -7,6 +7,7 @@ const userNameLogin = document.querySelector(".username-login");
 const passwordLogin = document.querySelector(".password-login");
 const userName = document.querySelector(".user-account");
 const userTrips = document.querySelector(".user-trips");
+const filterTripButtons = document.querySelectorAll(".trip-filter");
 const destinationCardSection = document.querySelector(".destination-section")
 const userSummary = document.querySelector(".user-summary");
 const myTripsButton = document.querySelector(".my-trips-button");
@@ -51,12 +52,13 @@ export const changeUserSummary = (user, destinations, trips) => {
     <div class="user-info">
       <p class="user-rank-and-points">${points}</p>
       <hr>
-      <p><b>Your Point Total</b></p>
+      <p><b>Your Point* Total</b></p>
     </div>
     <div class="user-info">
       <p class="user-rank-and-points">${rank.rank}</p>
       <hr>
       <p><b>Your Rank</b></p>
+      <p>*$1 = 1 Point</p>
     </div>
   `;
   addPointsToNextRank(rank);
@@ -69,7 +71,7 @@ const addPointsToNextRank = rank => {
     <div class="user-info">
       <p class="user-rank-and-points">${pointsToNextRank}</p>
       <hr>
-      <p><b>Points to Next Rank</b></p>
+      <p><b>Points* to Next Rank</b></p>
     </div
     `);
   } else {
@@ -77,7 +79,7 @@ const addPointsToNextRank = rank => {
     <div class="user-info">
       <p class="user-rank-and-points">Max Rank</p>
       <hr>
-      <p><b>Points to Next Rank</b></p>
+      <p><b>Points* to Next Rank</b></p>
     </div`);
   }
 }
@@ -135,6 +137,11 @@ const addTripCardsToPage = (trip, destination) => {
   }
 }
 
+export const selectFilter = () => {
+  filterTripButtons.forEach(button => button.removeAttribute("disabled"))
+  event.target.setAttribute("disabled", true);
+}
+
 export const showUserTripInputs = () => {
   userTrips.innerHTML = "";
   myTripsButton.toggleAttribute("disabled");
@@ -175,16 +182,17 @@ export const showDestinationOpts = destinations => {
 }
 
 const createDestinationCards = (destination, price) => {
+  const date = new Date(`${dateInput.value}T12:00:00-07:00`).toLocaleDateString();
   destinationCardSection.innerHTML += `
   <article class="destination" id="${destination.id}">
     <img class="destination-images" src="${destination.image}" alt="${destination.alt}">
     <div class="destination-details">
       <div>
         <h2>${destination.destination}</h2>
-        <p>Departure: ${dateInput.value}</p>
+        <p>Departure: ${date}</p>
         <p>Days: ${durationInput.value}</p>
         <p>Number of Wanderers: ${travelersInput.value}</p>
-        <p class="trip-price">Total Cost: $${price}</p>
+        <p class="trip-price">Total Cost: $${price} (includes 10% fee)</p>
       </div>
       <button class="book-trip-button" type="button">BOOK IT</button>
     </div>

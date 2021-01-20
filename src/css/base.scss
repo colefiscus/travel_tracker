@@ -1,182 +1,50 @@
-html,
-body {
+@import 'variables';
+@import 'login';
+@import 'header_and_footer';
+@import 'buttons';
+@import 'trips';
+@import 'destinations';
+
+html {
   margin: 0;
+}
+body {
+  font-family: $main-font;
   min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Nixie One';
-  background-color: #EBEBEB;
   background-image: url(https://images.pexels.com/photos/911738/pexels-photo-911738.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  margin: 0;
 }
-
-// ------------------------HEADER ------------------------
-
-.login-page {
-  width: 100%;
-  height: 100vh;
-  background-image: url(https://images.pexels.com/photos/1831234/pexels-photo-1831234.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-  font-size: xx-large;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.login-title {
-  margin-bottom: 2%;
-}
-
-.login-form {
-  font-size: x-large;
-  width: auto;
-  text-align: center;
-  margin: 3%;
-}
-
-.login-icon {
-  width: 4em;
-  height: 4em;
-}
-
-.login-form input {
-  font-family: "Nixie One";
-  width: 70%;
-  font-size: x-large;
-}
-
-.login-button {
-  width: 70%;
-  font-family: "Nixie One";
-  font-size: x-large;
-  background-color: #89DAFA;
-  margin-top: 3%;
-}
-
-header {
-  position: sticky;
-  top: 0px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #89DAFA;
-  border-bottom: 3px double #202931;
-}
-
-.wander-icons {
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
-}
-
-.plane-icon {
-  width: 4em;
-  height: 4em;
-  padding: 2%;
-}
-
-.login-corner {
-  width: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-right: 20px;
-}
-
-// ------------------------ BUTTONS ------------------------
-
-.logout-button {
-  font-family: "Raleway";
-  font-size: large;
-  width: auto;
-  height: 35%;
-  background-color: #004266;
-  color: #ffffff;
-  border-radius: 30px/60px;
-  margin-left: 20px;
-  padding: 2%;
-}
-
-.trip-type-buttons > button {
-  font-family: "Raleway";
-  font-size: medium;
-  width: 15%;
-  height: 100%;
-  background-color: #004266;
-  color: #FFFFFF;
-}
-
-.trip-selection-buttons > button {
-  font-family: "Nixie One";
-  font-size: x-large;
-  width: auto;
-  height: 100%;
-  background-color: #004266;
-  color: #ffffff;
-  border-radius: 30px/60px;
-  padding: 2%;
-}
-
-.selected-button {
-  width: 25%;
-  height: 100%;
-  background-color: #D8F3FD;
-  color: #000000;
-  border-radius: 20px;
-}
-
-.all-trips{
-  border-radius: 20px 0 0 20px;
-}
-
-.pending-trips {
-  border-radius: 0 20px 20px 0;
-}
-
-.find-trips-button {
-  font-family: "Nixie One";
-  font-size: x-large;
-  width: auto;
-  height: 100%;
-  background-color: #004266;
-  color: #ffffff;
-  border-radius: 30px/60px;
-  margin: 2%;
-  padding: 2%;
-}
-
-// ------------------------ USER SUMMARY ------------------------
 
 .main-page {
+  background-color: $cream;
   height: auto;
   width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border-left: 12px double #89DAFA;
-  border-right: 12px double #EFD1DC;
-  background-color: #F5F5F5
+  border-left: 12px double $skyblue;
+  border-right: 12px double $pink;
 }
 
 .user-summary {
-  font-family: "Raleway";
-  border-bottom: 8px double #004266;
+  font-family: $second-font;
   width: 80%;
   display: flex;
   justify-content: space-around;
   text-align: center;
-  align-items: center;
   margin-bottom: 3%;
   padding: 3%;
+  border-bottom: 8px double $darkblue;
 }
 
 hr {
-  width: 100%;
-  border: 1px solid #F6AE2D;
+  border: 1px solid $gold;
 }
 
 .user-info {
@@ -184,8 +52,7 @@ hr {
 }
 
 .user-rank-and-points {
-  width: auto;
-  font-family: "Nixie One";
+  font-family: $main-font;
   font-size: xx-large;
   margin: 10%;
 }
@@ -194,16 +61,11 @@ hr {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 }
 
 .postcard-icon {
   width: 5em;
   height: 5em;
-}
-
-.hidden {
-  display: none;
 }
 
 .trip-selection-buttons {
@@ -225,10 +87,8 @@ hr {
 }
 
 .trip-inputs {
-  display: flex;
+  @extend .sass-flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
   margin: 1%;
 }
@@ -245,108 +105,69 @@ hr {
   margin: 1%;
 }
 
-.destination-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 2fr;
+.hidden {
+  display: none;
 }
 
-.destination {
-  font-family: "Nixie One";
-  font-size: large;
-  margin: 4%;
-  padding-bottom: 2%;
-  text-align: center;
-  border: 3px dotted #D63230;
+@media screen and (max-width: 1100px) {
+  .main-page
+  {
+    width: 100%;
+    border: none;
+  }
 }
 
-.destination p {
-  font-family: "Raleway";
-  margin: 2%;
-  font-size: large;
+@media screen and (max-width: 700px) {
+  .user-summary {
+    flex-direction: column;
+    align-items: center;
+    font-size: larger;
+  }
+  .user-info {
+    width: 70%;
+  }
+  .destination-section {
+    grid-template-columns: 1fr;
+  }
+  .trip-selection-buttons {
+    flex-direction: column;
+    align-items: center;
+    margin: 4%;
+  }
 }
 
-.book-trip-button {
-  margin: 3%;
-  width: 40%;
-  font-family: "Nixie One";
-  font-size: x-large;
-  background-color: #D63230;
-  color: #FFFFFF;
-  border-radius: 30px/60px;
+@media screen and (max-width: 500px) {
+  header {
+    justify-content: space-around;
+  }
+  img {
+    width: 100%;
+  }
+  .trip {
+    flex-direction: column;
+    align-items: center;
+  }
+  .trip-card-info {
+    text-align: center;
+    margin: 0;
+  }
+  .trip-type-buttons > button {
+    width: 20%;
+  }
+  .input-option {
+    width: 50%;
+  }
 }
 
-.destination-details {
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-}
-
-.destination-images {
-  width: 100%;
-  height: 16em;
-}
-
-.trip-type-buttons {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.user-trips {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.trip {
-  font-family: "Raleway";
-  width: 85%;
-  display: flex;
-  justify-content: space-evenly;
-  // align-items: center;
-  border: 5px solid black;
-  border-image-slice: 1;
-  margin: 3%;
-}
-
-.trip-card-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 1%;
-  font-size: large;
-  text-align: left;
-}
-
-.destination-label {
-  font-family: "Nixie One";
-  // font-size: x-large;
-  margin: 1%;
-}
-
-.no-matching-trips {
-  width: 100%;
-  height: 250px;
-  font-family: "Nixie One";
-  font-size: x-large;
-  align-items: center;
-}
-
-.trip-border {
-  border-image-source: linear-gradient(to left, #F5F5F5, #F6AE2D, #617B94, #617B94, #F6AE2D, #F5F5F5);
-}
-
-img {
-  height: auto;
-  width: 45%;
-}
-
-footer {
-  background-color: #EFD1DC;
-  border-top: 3px double #202931;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+@media screen and (max-width: 420px) {
+  .wander-icons h1 {
+    display: none;
+  }
+  .trip-type-buttons > button {
+    font-size: small;
+    border-radius: 0;
+  }
+  .wandr-comment {
+    display: none;
+  }
 }

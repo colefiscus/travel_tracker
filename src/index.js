@@ -1,6 +1,6 @@
 import "./css/base.scss";
-import "./images/plane.png"
-import "./images/postcard.png"
+import "./images/plane.png";
+import "./images/postcard.png";
 
 import { User } from "./User.js";
 import { Trip } from "./Trip.js";
@@ -124,14 +124,19 @@ const handleError = error => {
 function filterTrips() {
   if (event.target.classList.contains("all-trips")) {
     domUpdates.displayUserTrips(userDestinations, trips);
+    domUpdates.selectFilter();
   } else if (event.target.classList.contains("past-trips")) {
     filterPastTrips();
+    domUpdates.selectFilter();
   } else if (event.target.classList.contains("future-trips")) {
     filterFutureTrips();
+    domUpdates.selectFilter();
   } else if (event.target.classList.contains("present-trips")) {
     filterPresentTrips();
+    domUpdates.selectFilter();
   } else if (event.target.classList.contains("pending-trips")) {
     filterPendingTrips();
+    domUpdates.selectFilter();
   }
 }
 

@@ -1,0 +1,33 @@
+header {
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $skyblue;
+  border-bottom: $horizontal-border;
+}
+
+.wander-icons {
+  @extend .sass-flex;
+  margin-left: 20px;
+}
+
+.plane-icon {
+  @extend .sass-icon;
+  padding: 2%;
+}
+
+.login-corner {
+  @extend .sass-flex;
+  width: 30%;
+}
+
+footer {
+  background-color: $pink;
+  border-top: $horizontal-border;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}

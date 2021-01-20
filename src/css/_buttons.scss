@@ -1,0 +1,76 @@
+.logout-button {
+  @extend .sass-button;
+  font-family: $second-font;
+  font-size: large;
+  border-radius: 30px/60px;
+  margin-left: 20px;
+  padding: 2%;
+  &:hover {
+    background-color: $red;
+    color: $black;
+  }
+}
+
+.trip-selection-buttons > button {
+  @extend .sass-button;
+  font-family: $main-font;
+  font-size: x-large;
+  border-radius: 30px/60px;
+  padding: 2%;
+  align-items: center;
+  &:hover, &:disabled {
+    @extend .sass-button-select;
+  }
+}
+
+.trip-type-buttons > button {
+  @extend .sass-button;
+  font-family: $second-font;
+  font-size: medium;
+  width: 15%;
+  &:hover, &:disabled {
+    @extend .sass-button-select;
+  }
+}
+
+.find-trips-button {
+  @extend .sass-button;
+  font-family: $main-font;
+  font-size: x-large;
+  border-radius: 30px/60px;
+  margin: 2%;
+  padding: 2%;
+  &:hover {
+    @extend .sass-button-select;
+  }
+}
+
+.trip-type-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.all-trips{
+  border-radius: 20px 0 0 20px;
+}
+
+.pending-trips {
+  border-radius: 0 20px 20px 0;
+}
+
+.book-trip-button {
+  background-color: $red;
+  color: $white;
+  font-family: $main-font;
+  font-size: x-large;
+  border-radius: 30px/60px;
+  border-color: $gold;
+  width: 40%;
+  margin: 3%;
+  &:hover {
+    background-color: $gold;
+    color: $black;
+    border-color: $black;
+  }
+}

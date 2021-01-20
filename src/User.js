@@ -10,7 +10,7 @@ export class User {
     destinations.forEach(destination => {
       trips.forEach(trip => {
         if (trip.destinationID === destination.id && trip.status === "approved") {
-          totalPoints += destination.calculateTripCost(trip)
+          totalPoints += destination.calculateTripCost(trip);
         }
       })
     })
