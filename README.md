@@ -37,10 +37,9 @@ Or you can just run the tests using `npm test`, assuming you've already ran `npm
 Here are some images a user will see in sequence of their use of WANDR:
 
 ![Login Screen](README_images/LOGIN.png)
+![Book New Trips](README_images/TRIPS.png)
 ![Main Page](README_images/MAIN_SCREEN.png)
 ![Trips](README_images/NEW_TRIPS.png)
-![Book New Trips](README_images/TRIPS.png)
-
 
 ## Bugs / Future Iterations
 
