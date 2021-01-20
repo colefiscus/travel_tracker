@@ -1,0 +1,22 @@
+.destination-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.destination {
+  font-size: large;
+  border: 3px dotted $red;
+  text-align: center;
+  margin: 4%;
+  padding-bottom: 2%;
+}
+
+.destination p {
+  font-family: $second-font;
+  margin: 2%;
+}
+
+.destination-images {
+  width: 100%;
+  height: 16em;
+}

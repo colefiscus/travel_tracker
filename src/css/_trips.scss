@@ -1,0 +1,44 @@
+.user-trips {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trip {
+  font-family: $second-font;
+  display: flex;
+  justify-content: space-evenly;
+  border: 5px solid black;
+  border-image-slice: 1;
+  margin: 3%;
+}
+
+.destination-label {
+  font-family: $main-font;
+  margin: 1%;
+  margin-top: 3%;
+}
+
+.trip-card-info {
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1%;
+}
+
+.no-matching-trips {
+  font-family: $main-font;
+  font-size: x-large;
+  width: 100%;
+  height: 250px;
+  align-items: center;
+}
+
+.trip-border {
+  border-image-source: linear-gradient(to left, $cream, $gold, $darkblue, $darkblue, $gold, $cream);
+}
+
+img {
+  width: 45%;
+}

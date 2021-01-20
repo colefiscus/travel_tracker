@@ -7,6 +7,7 @@ const userNameLogin = document.querySelector(".username-login");
 const passwordLogin = document.querySelector(".password-login");
 const userName = document.querySelector(".user-account");
 const userTrips = document.querySelector(".user-trips");
+const filterTripButtons = document.querySelectorAll(".trip-filter");
 const destinationCardSection = document.querySelector(".destination-section")
 const userSummary = document.querySelector(".user-summary");
 const myTripsButton = document.querySelector(".my-trips-button");
@@ -133,6 +134,11 @@ const addTripCardsToPage = (trip, destination) => {
     </article>
     `
   }
+}
+
+export const selectFilter = () => {
+  filterTripButtons.forEach(button => button.removeAttribute("disabled"))
+  event.target.setAttribute("disabled", true);
 }
 
 export const showUserTripInputs = () => {

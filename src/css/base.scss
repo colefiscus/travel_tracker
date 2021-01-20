@@ -2,23 +2,24 @@
 @import 'login';
 @import 'header_and_footer';
 @import 'buttons';
+@import 'trips';
+@import 'destinations';
 
 html,
 body {
-  margin: 0;
+  font-family: $main-font;
   min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-family: $main-font;
   background-image: url(https://images.pexels.com/photos/911738/pexels-photo-911738.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  margin: 0;
 }
 
-// ------------------------ USER SUMMARY ------------------------
-
 .main-page {
+  background-color: $cream;
   height: auto;
   width: 80%;
   display: flex;
@@ -27,23 +28,20 @@ body {
   align-items: center;
   border-left: 12px double $skyblue;
   border-right: 12px double $pink;
-  background-color: $cream;
 }
 
 .user-summary {
   font-family: $second-font;
-  border-bottom: 8px double $darkblue;
   width: 80%;
   display: flex;
   justify-content: space-around;
   text-align: center;
-  align-items: center;
   margin-bottom: 3%;
   padding: 3%;
+  border-bottom: 8px double $darkblue;
 }
 
 hr {
-  width: 100%;
   border: 1px solid $gold;
 }
 
@@ -52,7 +50,6 @@ hr {
 }
 
 .user-rank-and-points {
-  width: auto;
   font-family: $main-font;
   font-size: xx-large;
   margin: 10%;
@@ -62,16 +59,10 @@ hr {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 }
 
 .postcard-icon {
   width: 5em;
-  height: 5em;
-}
-
-.hidden {
-  display: none;
 }
 
 .trip-selection-buttons {
@@ -93,10 +84,8 @@ hr {
 }
 
 .trip-inputs {
-  display: flex;
+  @extend .sass-flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
   margin: 1%;
 }
@@ -113,98 +102,6 @@ hr {
   margin: 1%;
 }
 
-.destination-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 2fr;
-}
-
-.destination {
-  font-family: $main-font;
-  font-size: large;
-  margin: 4%;
-  padding-bottom: 2%;
-  text-align: center;
-  border: 3px dotted $red;
-}
-
-.destination p {
-  font-family: $second-font;
-  margin: 2%;
-  font-size: large;
-}
-
-.book-trip-button {
-  margin: 3%;
-  width: 40%;
-  font-family: $main-font;
-  font-size: x-large;
-  background-color: $red;
-  color: $white;
-  border-radius: 30px/60px;
-}
-
-.destination-details {
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-}
-
-.destination-images {
-  width: 100%;
-  height: 16em;
-}
-
-.trip-type-buttons {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.user-trips {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.trip {
-  font-family: $second-font;
-  width: 85%;
-  display: flex;
-  justify-content: space-evenly;
-  // align-items: center;
-  border: 5px solid black;
-  border-image-slice: 1;
-  margin: 3%;
-}
-
-.trip-card-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 1%;
-  font-size: large;
-  text-align: left;
-}
-
-.destination-label {
-  font-family: $main-font;
-  margin: 1%;
-}
-
-.no-matching-trips {
-  width: 100%;
-  height: 250px;
-  font-family: $main-font;
-  font-size: x-large;
-  align-items: center;
-}
-
-.trip-border {
-  border-image-source: linear-gradient(to left, $cream, $gold, $darkblue, $darkblue, $gold, $cream);
-}
-
-img {
-  height: auto;
-  width: 45%;
+.hidden {
+  display: none;
 }
